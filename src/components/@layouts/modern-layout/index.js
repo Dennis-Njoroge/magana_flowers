@@ -5,7 +5,7 @@ import ModernSidebar from "./modern-sidebar";
 import Box from "@mui/material/Box";
 import {useMediaQuery} from "@mui/material";
 
-export const drawerWidth = 258;
+export const drawerWidth = 200;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({

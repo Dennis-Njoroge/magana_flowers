@@ -12,7 +12,7 @@ export const baseThemeOptions = {
         MuiInputLabel: {
             styleOverrides: {
                 root: {
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: 600,
                 },
                 // shrink: {
@@ -279,27 +279,27 @@ export const baseThemeOptions = {
         },
         fontFamily:'"Mulish", sans-serif',
         body1: {
-            fontSize: "1rem",
+            fontSize: "0.9rem",
             fontWeight: 400,
             lineHeight: 1.5,
         },
         body2: {
-            fontSize: "0.875rem",
+            fontSize: "0.8rem",
             fontWeight: 400,
             lineHeight: 1.57,
         },
         subtitle1: {
-            fontSize: "1rem",
+            fontSize: "0.9rem",
             fontWeight: 600,
             lineHeight: 1.75,
         },
         subtitle2: {
-            fontSize: "0.875rem",
+            fontSize: "0.8rem",
             fontWeight: 500,
             lineHeight: 1.57,
         },
         overline: {
-            fontSize: "0.875rem",
+            fontSize: "0.8rem",
             fontWeight: 600,
             letterSpacing: "0.5px",
             lineHeight: 2.5,

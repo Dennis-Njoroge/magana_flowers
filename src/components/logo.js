@@ -5,10 +5,10 @@ import logoImg from "@/static/logo.png";
 
 
 export const Logo = styled((props) => {
-    const { variant, ...other } = props;
+    const { variant,width= 150, ...other } = props;
     return (
         <Box sx={{ backgroundColor: 'background.paper', display: 'flex', alignItems: 'center', justifyContent: 'center', px:2, borderRadius: 1, width: '100%' }}>
-            <Image src={logoImg} alt={'Logo'} width={150}/>
+            <Image src={logoImg} alt={'Logo'} width={width}/>
         </Box>
     );
 })``;

@@ -24,6 +24,7 @@ const AccountButton = () => {
         setOpenPopover(false);
     };
 
+
     return (
         <>
             <Box
@@ -50,8 +51,13 @@ const AccountButton = () => {
                 {lgUp && (
                     <>
                         <Typography sx={{ mx: 2, fontWeight:'bold' }} variant={'body2'} >
-                            {user?.name}
+                            {user?.username}
+                            <br/>
+                            <Typography variant={'caption'}>
+                                ({user?.userType?.toUpperCase()})
+                            </Typography>
                         </Typography>
+
                         <ExpandMore/>
                     </>
                 )}

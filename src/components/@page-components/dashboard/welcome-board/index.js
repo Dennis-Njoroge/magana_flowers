@@ -9,28 +9,18 @@ import RoleGuard from "@/hocs/role-guard";
 const quickActions = [
     {
         id: 1,
-        label: 'Make a Damage Claim',
+        label: 'Place an order',
         link: '/dashboard/damage-claims'
     },
     {
         id: 2,
-        label: 'Make a Theft Claim',
+        label: 'Track my order(s)',
         link: '/dashboard/theft-claims'
     },
     {
         id: 5,
-        label: 'Make a Credit Claim',
+        label: 'Check my account',
         link: '/dashboard/credit-life-claims'
-    },
-    {
-        id: 3,
-        label: 'Check Claim Status',
-        link: '/dashboard/claims-status'
-    },
-    {
-        id: 4,
-        label: 'View Dispatched Services',
-        link: '/dashboard/dispatched-services'
     },
 ];
 
@@ -48,7 +38,7 @@ const WelcomeBoard = () => {
                 <CardContent sx={{ p: -1}}>
                     <Box>
                         <Typography variant={'h5'} gutterBottom>
-                            {`${getGreetings()} ${user?.name ?? ''}, `}
+                            {`${getGreetings()} ${user?.username ?? ''}, `}
                         </Typography>
                         <Typography variant={'h6'}>
                             {"What would you like to do today?"}

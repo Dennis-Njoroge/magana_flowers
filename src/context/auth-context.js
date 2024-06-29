@@ -139,10 +139,7 @@ export const AuthProvider = (props) => {
             },
         });
         router
-            .push({
-                pathname: "/dashboard",
-                query: { returnUrl: router.asPath },
-            })
+            .push("/dashboard")
             .catch(console.error);
 
         //await fetchUserMenus(user?.userid);

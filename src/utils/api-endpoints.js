@@ -33,6 +33,9 @@ export const APP_API_URL = {
     RESEND_OTP: '/api/auth/resend-otp',
     REFRESH_TOKEN: '/api/',
 
+
+    PRODUCTS: '/api/products',
+
     /***************** CLAIM APIS **********************/
     MAKE_CLAIM: '/api/claims/make-claim',
     SEARCH_CUSTOMER: '/api/claims/search-customer',

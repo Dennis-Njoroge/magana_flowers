@@ -8,7 +8,6 @@ import {useEffect} from "react";
 import ModernSidebarSection from "./modern-sidebar-section";
 import {useAuth} from "@/hooks/use-auth";
 import {Scrollbar} from "@/components/@shared-components/scrollbar";
-import SidebarMenuButton from "@/components/@shared-components/buttons/sidebar-menu-button";
 import {userMenus} from "@/utils/constants";
 import Button from "@mui/material/Button";
 
@@ -65,7 +64,7 @@ const ModernSidebar = props => {
                 <DrawerHeader>
                     <Box sx={{ p: 1, display:'flex', justifyContent:'center', alignItems: 'center' }}>
                         <NextLink href="/" passHref>
-                                <Logo variant={'light'}/>
+                                <Logo width={100} variant={'light'}/>
                         </NextLink>
                     </Box>
                 </DrawerHeader>
@@ -104,7 +103,7 @@ const ModernSidebar = props => {
                 <Box sx={{ px:1, pb:2, pt:1, display: 'fixed', width: '100%', bottom: 0}}>
                     <Button
                         startIcon={<Icon>logout</Icon>}
-                        color={'warning'}
+                        color={'error'}
                         variant={'contained'}
                         fullWidth={true}
                         onClick={handleOnLogout}

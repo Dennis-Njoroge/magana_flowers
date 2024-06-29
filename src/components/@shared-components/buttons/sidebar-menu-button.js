@@ -11,7 +11,9 @@ const SidebarMenuButton = props => {
     return (
         <>
             <Box sx={{
-                borderRadius: 1,
+                borderRadius: 0.5,
+                border: isActive ? 1 : 'none',
+                borderColor: isActive ? "primary.main" : color,
                 backgroundColor: isActive ? 'neutral.100' : backgroundColor,
                 mx: -0.5,
                 width: width,

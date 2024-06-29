@@ -41,8 +41,8 @@ const ModernSidebarItem = (props) => {
                         sx={{
                             display: "block",
                             mb: 0.5,
-                            py: 1,
-                            px: 1.5,
+                            py: 0.5,
+                            px: 1,
                             width: '100%',
                         }}
                         {...other}
@@ -76,9 +76,8 @@ const ModernSidebarItem = (props) => {
                 sx={{
                     display: "flex",
                     mb: 0.5,
-                    py: 1,
-                    px: 1.5,
-
+                    py: 0.5,
+                    px: 1,
                 }}
             >
                 <NextLink style={{width: '100%', textDecoration: "none"}} href={path ?? "/"} passHref>

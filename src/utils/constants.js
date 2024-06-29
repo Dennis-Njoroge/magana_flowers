@@ -57,35 +57,41 @@ export const userMenus = [
         "pageIcon": "home"
     },
     {
-        "pageName": "Damage Claims",
-        "route": "/dashboard/damage-claims",
+        "pageName": "Shop",
+        "route": "/dashboard/shop",
         "enabled": true,
-        "pageIcon": "phonelink_setup"
+        "pageIcon": "local_mall"
     },
-    {
-        "pageName": "Theft Claims",
-        "route": "/dashboard/theft-claims",
-        "enabled": true,
-        "pageIcon": "published_with_changes"
-    },
-    {
-        "pageName": "Credit Life Claims",
-        "route": "/dashboard/credit-life-claims",
-        "enabled": true,
-        "pageIcon": "health_and_safety"
-    },
-    {
-        "pageName": "Claims Status",
-        "route": "/dashboard/claims-status",
-        "enabled": true,
-        "pageIcon": "verified"
-    },
-    {
-        "pageName": "Dispatched Services",
-        "route": "/dashboard/dispatched-services",
-        "enabled": true,
-        "pageIcon": "engineering"
-    }
+    // {
+    //     "pageName": "Orders",
+    //     "route": "/dashboard/theft-claims",
+    //     "enabled": true,
+    //     "pageIcon": "published_with_changes"
+    // },
+    // {
+    //     "pageName": "Purchases",
+    //     "route": "/dashboard/theft-claims",
+    //     "enabled": true,
+    //     "pageIcon": "published_with_changes"
+    // },
+    // {
+    //     "pageName": "Products",
+    //     "route": "/dashboard/theft-claims",
+    //     "enabled": true,
+    //     "pageIcon": "published_with_changes"
+    // },
+    // {
+    //     "pageName": "Settings",
+    //     "route": "/dashboard/credit-life-claims",
+    //     "enabled": true,
+    //     "pageIcon": "health_and_safety"
+    // },
+    // {
+    //     "pageName": "User Management",
+    //     "route": "/dashboard/users",
+    //     "enabled": true,
+    //     "pageIcon": "verified",
+    // },
 ]
 
 export const PATHS = {
