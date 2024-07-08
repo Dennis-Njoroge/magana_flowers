@@ -48,7 +48,7 @@ const LoginForm = props => {
             <Box
                 sx={{
                     backgroundColor: 'background.paper',
-                    opacity: 0.9,
+                    //opacity: 0.9,
                     borderRadius: 2,
                     boxShadow: 5,
                     px:{md: 4, sm:2, xs: 2},

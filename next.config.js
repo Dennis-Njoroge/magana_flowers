@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  //basePath: '/claims',
+  images: {
+    domains: ['images.pexels.com'],
+  },
   poweredByHeader: false,
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',

@@ -6,7 +6,7 @@ import Dashboard from "@/components/@page-components/dashboard";
 import {AuthGuard} from "@/hocs/auth-guard";
 import RoleGuard from "@/hocs/role-guard";
 
-const title = "Dashboard";
+const title = "Home";
 const DashboardPage = () => {
     return (
         <>

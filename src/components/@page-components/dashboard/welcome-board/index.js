@@ -43,7 +43,7 @@ const WelcomeBoard = () => {
                         <Typography variant={'h6'}>
                             {"What would you like to do today?"}
                         </Typography>
-                        <Stack direction="row" sx={{ mt: 1}} spacing={2} useFlexGap flexWrap="wrap">
+                        <Stack direction="row" sx={{ mt: 1}} spacing={1} useFlexGap flexWrap="wrap">
                             {quickActions.map((action, index) => {
                                 return (
                                     <RoleGuard key={index} path={action.link}>

@@ -26,15 +26,16 @@ const divider = "#E6E8F0";
 //     contrastText: "#FFFFFF",
 // };
 const primary = {
-    main: "#35A839",
-    light: "#3ec043",
-    dark: "#319b35",
+    //main: "#35A839",
+    main: "#025E30",
+    light: "#025E30",
+    dark: "#025E30",
     contrastText: "#FFFFFF",
 };
 
 const secondary = {
-    main: "#333E48",
-    light: "#0075C9",
+    main: "#fa3f58",
+    light: "#ff465d",
     dark: "#2d3741",
     contrastText: "#FFFFFF",
 };

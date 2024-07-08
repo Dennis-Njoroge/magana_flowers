@@ -42,8 +42,8 @@ const AccountButton = () => {
                     sx={{
                         height: 40,
                         width: 40,
-                        backgroundColor: theme => alpha(theme.palette.secondary.main, 0.1),
-                        color: 'secondary.main',
+                        backgroundColor: theme => alpha(theme.palette.primary.main, 0.1),
+                        color: 'primary.main',
                     }}
                 >
                     {/*{getInitials(user?.name)}*/}

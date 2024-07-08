@@ -18,14 +18,15 @@ const DiscountedProducts = () => {
 
     return (
         <>
-            <Card>
-                <CardHeader title={'Discounted Products'}/>
-                <CardContent>
-                    <ProductsList
-                        products={products}
-                    />
-                </CardContent>
-            </Card>
+            <ProductsList
+                products={products}
+            />
+            {/*<Card>*/}
+            {/*    <CardHeader title={'Discounted Products'}/>*/}
+            {/*    <CardContent>*/}
+            {/*        */}
+            {/*    </CardContent>*/}
+            {/*</Card>*/}
 
         </>
     )

@@ -16,6 +16,9 @@ const RedditTextField = styled((props) => (
             'box-shadow',
         ]),
     },
+    '& .MuiInputBase-input': {
+        textAlign: 'center', // Center the text
+    },
     "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
         display: "none",
     },

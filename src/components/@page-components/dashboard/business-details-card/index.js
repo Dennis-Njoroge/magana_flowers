@@ -4,6 +4,14 @@ import PropertyItem from "@/components/@shared-components/list/property-item";
 import StoreLottie from "@/components/@shared-components/lottie-files/store-lottie";
 import {useAuth} from "@/hooks/use-auth";
 
+
+const shopDetails = {
+    name: "Magana Flowers",
+    contact: "020 2017651",
+    email: "magana@gmail.com",
+    location: "Karuri, Naivasha"
+}
+
 const BusinessDetailsCard = () => {
     const { user } = useAuth();
     return (
@@ -15,11 +23,12 @@ const BusinessDetailsCard = () => {
                     </Box>
                     <Box sx={{ flex: 1, display:'flex',flexDirection: 'column', gap:1}}>
                         <Typography variant={'h6'} color={'primary'}>
-                            {"Business Details"}
+                            {"Shop Details"}
                         </Typography>
-                       <PropertyItem label={"Business Name"} value={user?.shopname}/>
-                       <PropertyItem label={"Contact"} value={user?.phonenumber}/>
-                       <PropertyItem label={"Location"} value={user?.location}/>
+                       <PropertyItem label={"Name"} value={shopDetails.name}/>
+                       <PropertyItem label={"Contact"} value={shopDetails.contact}/>
+                       <PropertyItem label={"Email"} value={shopDetails.email}/>
+                       <PropertyItem label={"Location"} value={shopDetails?.location}/>
                     </Box>
                 </CardContent>
 

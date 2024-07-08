@@ -53,7 +53,7 @@ const ModernSidebarItem = (props) => {
                             onClick={handleToggle}
                             label={title}
                             open={open}
-                            color={theme.palette.mode === 'light' ? "primary.contrastText" : "text.primary"}
+                            color={theme.palette.mode === 'light' ? "text.primary" : "text.primary"}
                             backgroundColor={"transparent"}
                             isParent = {true}
                         />
@@ -86,7 +86,7 @@ const ModernSidebarItem = (props) => {
                         icon = {icon}
                         label={title}
                         open={open}
-                        color={theme.palette.mode === 'light' ? "secondary.contrastText" : "text.primary"}
+                        color={theme.palette.mode === 'light' ? "text.primary" : "text.primary"}
                         backgroundColor={"transparent"}
                     />
                 </NextLink>

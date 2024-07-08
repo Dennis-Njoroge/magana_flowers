@@ -51,7 +51,7 @@ export const paymentProviderTypes = [
 ]
 export const userMenus = [
     {
-        "pageName": "Dashboard",
+        "pageName": "Home",
         "route": "/dashboard",
         "enabled": true,
         "pageIcon": "home"
@@ -61,6 +61,24 @@ export const userMenus = [
         "route": "/dashboard/shop",
         "enabled": true,
         "pageIcon": "local_mall"
+    },
+    {
+        "pageName": "My Cart",
+        "route": "/dashboard/cart",
+        "enabled": true,
+        "pageIcon": "shopping_cart"
+    },
+    {
+        "pageName": "Orders",
+        "route": "/dashboard/orders",
+        "enabled": true,
+        "pageIcon": "list_alt"
+    },
+    {
+        "pageName": "My Account",
+        "route": "/dashboard/account",
+        "enabled": true,
+        "pageIcon": "manage_accounts"
     },
     // {
     //     "pageName": "Orders",

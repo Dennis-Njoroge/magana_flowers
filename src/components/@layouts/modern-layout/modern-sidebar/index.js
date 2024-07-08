@@ -71,6 +71,7 @@ const ModernSidebar = props => {
                 <Scrollbar
                     sx={{
                         height: "calc(100% - 140px)",
+                        px:1,
                         "& .simplebar-content": {
                             height: "100%",
                         },
@@ -103,7 +104,7 @@ const ModernSidebar = props => {
                 <Box sx={{ px:1, pb:2, pt:1, display: 'fixed', width: '100%', bottom: 0}}>
                     <Button
                         startIcon={<Icon>logout</Icon>}
-                        color={'error'}
+                        color={'secondary'}
                         variant={'contained'}
                         fullWidth={true}
                         onClick={handleOnLogout}
@@ -124,10 +125,11 @@ const ModernSidebar = props => {
                     '& .MuiDrawer-paper': {
                         width: drawerWidth,
                         boxSizing: 'border-box',
-                        // backgroundColor: theme => alpha(theme.palette.background.paper, 0.6),
-                        // backdropFilter: 'blur(8px)',
-                        backgroundColor: theme =>  theme.palette.mode === 'light' ? 'secondary.main' : 'background.paper',
-                        color: theme =>  theme.palette.mode === 'light' ? 'primary.contrastText' : 'text.primary',
+                        backgroundColor: theme => alpha(theme.palette.background.paper, 0.8),
+                        backdropFilter: 'blur(8px)',
+                        color: 'text.primary',
+                        // backgroundColor: theme =>  theme.palette.mode === 'light' ? 'secondary.main' : 'background.paper',
+                        // color: theme =>  theme.palette.mode === 'light' ? 'primary.contrastText' : 'text.primary',
                     },
                 }}
                 variant={lgUp ? "persistent" : "temporary"}

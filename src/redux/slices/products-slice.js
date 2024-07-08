@@ -2,10 +2,12 @@ import {createSlice} from "@reduxjs/toolkit";
 import {productsApis} from "@/services/products";
 import {setIsLoading} from "@/redux/slices/loading";
 import {getAutoCompleteValue} from "@/utils/helper-functions";
+import {categoriesApis} from "@/services/categories";
 
 const initialState = {
     products: [],
     discountedProducts: [],
+    categories: [],
 }
 
 const ProductsSlice = createSlice({
@@ -18,10 +20,17 @@ const ProductsSlice = createSlice({
         setDiscountedProducts: (state, action) => {
             state.discountedProducts = action.payload
         },
+        setCategories: (state, action) => {
+            state.categories = action.payload
+        }
     }
 });
 
-const { setProducts, setDiscountedProducts } = ProductsSlice.actions;
+const {
+    setProducts,
+    setDiscountedProducts,
+    setCategories
+} = ProductsSlice.actions;
 
 
 export const getAllProducts = filters => async dispatch => {
@@ -36,6 +45,16 @@ export const getAllProducts = filters => async dispatch => {
         console.log(e.message);
     }
     dispatch(setIsLoading(false))
+}
+
+export const getCategories = () => async dispatch => {
+    try{
+        const res = await categoriesApis.fetchCategories();
+        dispatch(setCategories(res));
+    }
+    catch (e) {
+        console.log(e.message)
+    }
 }
 
 export default ProductsSlice.reducer;

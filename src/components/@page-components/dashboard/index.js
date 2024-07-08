@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid";
 import BusinessDetailsCard from "@/components/@page-components/dashboard/business-details-card";
 import WelcomeBoard from "@/components/@page-components/dashboard/welcome-board";
 import DiscountedProducts from "@/components/@page-components/dashboard/discounted-products";
+import ProductCategories from "@/components/@page-components/dashboard/product-categories";
 
 const Dashboard = () => {
     return(
@@ -13,6 +14,9 @@ const Dashboard = () => {
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={12} sm={12}>
                                 <WelcomeBoard/>
+                            </Grid>
+                            <Grid item xs={12} md={12} sm={12}>
+                                <ProductCategories/>
                             </Grid>
                             <Grid item xs={12} md={12} sm={12}>
                                 <DiscountedProducts/>

@@ -34,6 +34,7 @@ const DMTChip = props => {
         <Chip
             sx={{
                 borderRadius: 1,
+                //backgroundColor: theme => alpha(theme.palette?.[color]?.main, 0.05),
                 // backgroundColor: theme => alpha(theme.palette[color].main, 0.08),
                 // fontWeight: 'bold',
                // fontSize: 'inherit',

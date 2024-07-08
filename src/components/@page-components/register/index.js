@@ -39,7 +39,7 @@ const Register = () => {
  return (
      <>
          <Grid container spacing={{md:4, sm:2, xs:2}} alignItems={'center'}>
-             <Grid sx={{ display: {sm: 'none', xs:'none', md:'inherit'}}} p={4} item xs={0} sm={0} md={3}>
+             <Grid sx={{ display: {sm: 'none', xs:'none', md:'inherit'}}} p={4} item xs={0} sm={0} md={0}>
                  {/*<RegisterBanner/>*/}
              </Grid>
              <Grid item xs={12} sm={12} md={6}>
