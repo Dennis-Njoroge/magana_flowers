@@ -4,7 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import {toast} from "react-toastify";
 import Collapse from "@mui/material/Collapse";
 
-const CartButton = ({ value = 1, onChange, name, onBlur, error, helperText}) => {
+const CartButton = ({ value = 1, onChange, name, onBlur, error, helperText, width = 200, size='default'}) => {
     const handleOnIncrement = () => {
         onChange(Number(value) + 1);
     }
@@ -23,10 +23,10 @@ const CartButton = ({ value = 1, onChange, name, onBlur, error, helperText}) => 
                 borderColor: error ? 'error.main' : 'neutral.200',
                 borderRadius: 1,
                 alignItems: 'center',
-                width: 200,
+                width: width,
                 p:1
             }}>
-                <IconButton onClick={handleOnDecrement}>
+                <IconButton size={size} onClick={handleOnDecrement}>
                     <Icon>
                         {"remove"}
                     </Icon>
@@ -40,7 +40,7 @@ const CartButton = ({ value = 1, onChange, name, onBlur, error, helperText}) => 
                     //helperText={helperText}
                     onChange={e => onChange(e.target.value)}
                 />
-                <IconButton onClick={handleOnIncrement}>
+                <IconButton size={size} onClick={handleOnIncrement}>
                     <Icon>
                         {"add"}
                     </Icon>

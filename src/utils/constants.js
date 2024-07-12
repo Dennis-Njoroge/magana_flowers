@@ -114,6 +114,8 @@ export const userMenus = [
 
 export const PATHS = {
     DASHBOARD: '/dashboard',
+    SHOP: '/dashboard/shop',
+    CART: '/dashboard/cart',
     DAMAGE_CLAIMS: '/dashboard/damage-claims',
     THEFT_CLAIMS: '/dashboard/theft-claims',
     CREDIT_LIFE_CLAIMS: '/dashboard/credit-life-claims',

@@ -1,33 +1,33 @@
-import ModernLayout from "@/components/@layouts/modern-layout";
-import Head from "next/head";
+import Head from 'next/head'
 import {APP_NAME, PATHS} from "@/utils/constants";
 import Box from "@mui/material/Box";
-import CreditLife from "@/components/@page-components/claims/credit-life";
+import ModernLayout from "@/components/@layouts/modern-layout";
 import {AuthGuard} from "@/hocs/auth-guard";
 import RoleGuard from "@/hocs/role-guard";
+import Cart from "@/components/@page-components/cart";
 
-const title = 'Credit Life Claims';
-
-const CreditLifeClaimsPage = () => {
-    return(
+const title = "Cart";
+const CartPage = () => {
+    return (
         <>
             <Head>
                 <title>{title} |{APP_NAME}</title>
             </Head>
             <Box>
-                <CreditLife/>
+                <Cart/>
             </Box>
         </>
     )
 }
 
-CreditLifeClaimsPage.getLayout = page => (
+CartPage.getLayout = page => (
     <AuthGuard>
         <ModernLayout title={title}>
-            <RoleGuard path={PATHS.CREDIT_LIFE_CLAIMS} page={true}>
+            <RoleGuard path={PATHS.CART} page={true}>
                 {page}
             </RoleGuard>
         </ModernLayout>
-    </AuthGuard>
+     </AuthGuard>
 )
-export default CreditLifeClaimsPage
+
+export default CartPage;

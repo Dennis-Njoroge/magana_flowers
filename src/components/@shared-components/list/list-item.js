@@ -4,8 +4,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 const DMTListItem = props => {
-    const { name, description, amount} = props;
-    const lgUp = useMediaQuery((theme) => theme.breakpoints.up("md"), {
+    const { name, description, amount, image = null, ...other} = props;
+    const lgUp = useMediaQuery((theme) => theme.breakpoints.up("xs"), {
         noSsr: true,
     });
     return(
@@ -18,22 +18,21 @@ const DMTListItem = props => {
                 </Box>
                     : ""
             }
+                {...other}
             >
                 {lgUp && (
                     <ListItemAvatar>
                         <Avatar
+                            src={image}
+                            variant={'square'}
                             sx={{
                                 width: 40,
                                 height: 40,
                                 color: 'text.primary',
                                 backgroundColor: theme => alpha(theme.palette.info.main, 0.1),
                             }}
-                        >
-                            <Typography variant={'caption'} fontWeight={'bold'}>
-                                {getInitials(name)}
-                            </Typography>
+                        />
 
-                        </Avatar>
                     </ListItemAvatar>
                 )}
 

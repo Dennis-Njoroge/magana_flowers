@@ -1,33 +1,33 @@
-import ModernLayout from "@/components/@layouts/modern-layout";
-import Head from "next/head";
+import Head from 'next/head'
 import {APP_NAME, PATHS} from "@/utils/constants";
 import Box from "@mui/material/Box";
-import Theft from "@/components/@page-components/claims/theft";
+import ModernLayout from "@/components/@layouts/modern-layout";
 import {AuthGuard} from "@/hocs/auth-guard";
 import RoleGuard from "@/hocs/role-guard";
+import Shop from "@/components/@page-components/shop";
 
-const title = 'Theft Claims';
-
-const TheftClaimsPage = () => {
-    return(
+const title = "Shop";
+const DashboardPage = () => {
+    return (
         <>
             <Head>
                 <title>{title} |{APP_NAME}</title>
             </Head>
             <Box>
-                <Theft/>
+                <Shop/>
             </Box>
         </>
     )
 }
 
-TheftClaimsPage.getLayout = page => (
+DashboardPage.getLayout = page => (
     <AuthGuard>
         <ModernLayout title={title}>
-            <RoleGuard path={PATHS.THEFT_CLAIMS} page={true}>
+            <RoleGuard path={PATHS.SHOP} page={true}>
                 {page}
             </RoleGuard>
         </ModernLayout>
-    </AuthGuard>
+     </AuthGuard>
 )
-export default TheftClaimsPage
+
+export default DashboardPage;
