@@ -34,7 +34,7 @@ const WelcomeBoard = () => {
         <>
             <Card sx={{
                 //background: `linear-gradient(25deg,#0075c9,#4188e7 20%,#25c1ed 90%)`,
-                backgroundColor: 'primary.main', color: 'secondary.contrastText'}}>
+                backgroundColor: 'primary.main', color: 'primary.contrastText'}}>
                 <CardContent sx={{ p: -1}}>
                     <Box>
                         <Typography variant={'h5'} gutterBottom>

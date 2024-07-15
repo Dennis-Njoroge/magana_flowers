@@ -139,22 +139,22 @@ export const validateRole = (path, loginType) => {
 
 export const saveLocally = (key, values) => {
     if( typeof window !== "undefined"){
-        sessionStorage.setItem(key, JSON.stringify(values));
+        localStorage.setItem(key, JSON.stringify(values));
     }
 }
 
 export const getLocally = (key) => {
     let data = null;
     if( typeof window !== "undefined"){
-        data = sessionStorage.getItem(key) !== undefined && sessionStorage.getItem(key) !== null
-            ? JSON.parse(sessionStorage.getItem(key)) : null;
+        data = localStorage.getItem(key) !== undefined && localStorage.getItem(key) !== null
+            ? JSON.parse(localStorage.getItem(key)) : null;
     }
     return data;
 }
 
 export const clearLocally = (key) => {
     if( typeof window !== "undefined"){
-        sessionStorage.removeItem(key);
+        localStorage.removeItem(key);
     }
 }
 

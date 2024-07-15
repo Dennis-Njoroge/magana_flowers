@@ -38,7 +38,7 @@ const SidebarMenuButton = props => {
                     py:1,
                     px:1,
                     '&:hover': {
-                        color:  !isActive ? 'neutral.600' : "text.primary"
+                        color:  !isActive ? 'neutral.600' : "primary.main"
                     },
                 }}
 

@@ -27,6 +27,7 @@ const initialState = {
             qty: 2,
         },
     ],
+    cartCount: 4
 }
 
 const CartSlice = createSlice({

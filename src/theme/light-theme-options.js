@@ -36,7 +36,7 @@ const primary = {
 const secondary = {
     main: "#fa3f58",
     light: "#ff465d",
-    dark: "#2d3741",
+    dark: "#d3334b",
     contrastText: "#FFFFFF",
 };
 

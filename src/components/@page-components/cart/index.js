@@ -23,16 +23,16 @@ const Cart = () => {
     return (
         <>
             <Box>
-                <Grid container spacing={{ md: 4, sm:2, xs:2 }}>
-                    <Grid item xs={12} md={3} sm={12}/>
+                <Grid container spacing={{ md: 4, sm:0, xs:0 }}>
+                    <Grid item xs={0} md={3} sm={0}/>
                     <Grid item xs={12} md={6} sm={12}>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={{md: 2}}>
                             <Grid item xs={12} md={12} sm={12}>
                                 <Collapse in={cartProducts.length <= 0}>
-                                    <EmptyCart/>
+                                    {cartProducts.length <= 0 && (
+                                        <EmptyCart/>
+                                    )}
                                 </Collapse>
-                            </Grid>
-                            <Grid item xs={12} md={12} sm={12}>
                                 <Collapse in={cartProducts.length > 0}>
                                     <CartItems/>
                                 </Collapse>

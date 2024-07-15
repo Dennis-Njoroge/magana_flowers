@@ -38,11 +38,12 @@ const ModernSidebar = props => {
     const handleOnCloseDrawer = () => {
         if (!lgUp){
             handleDrawerClose();
+            //console.log('Am here...');
         }
     }
 
     const handlePathChange = () => {
-        if (!router.isReady) {
+        if (router.isReady) {
             handleOnCloseDrawer();
         }
     };

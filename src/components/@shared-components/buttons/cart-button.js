@@ -40,7 +40,7 @@ const CartButton = ({ value = 1, onChange, name, onBlur, error, helperText, widt
                     //helperText={helperText}
                     onChange={e => onChange(e.target.value)}
                 />
-                <IconButton size={size} onClick={handleOnIncrement}>
+                <IconButton size={size}  onClick={handleOnIncrement}>
                     <Icon>
                         {"add"}
                     </Icon>
