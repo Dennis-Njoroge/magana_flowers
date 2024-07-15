@@ -1,5 +1,5 @@
 import * as productRepository from '@/repositories/ProductRepository';
-import {searchProductsByCategory} from "@/repositories/ProductRepository";
+
 
 export const createProductHandler = async (req, res) => {
     try {
