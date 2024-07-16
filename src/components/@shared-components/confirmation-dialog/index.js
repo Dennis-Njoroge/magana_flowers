@@ -1,20 +1,15 @@
 import DMTDialog from "@/components/@shared-components/dialog";
-import {alpha, Box, Collapse, DialogActions, DialogContent, Typography} from "@mui/material";
-import PropertyItem from "@/components/@shared-components/list/property-item";
+import {Collapse, DialogActions, DialogContent, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
-import {formatCurrency, getAutoCompleteValue, getMaskedName} from "@/utils/helper-functions";
 import {useEffect, useState} from "react";
-import SuccessPage from "@/components/@shared-components/success-page";
-import {useRouter} from "next/router";
-import {claimsTypes} from "@/utils/constants";
+import Box from "@mui/material/Box";
+
 
 const ConfirmationDialog = props => {
-    const { open, onClose, claim, customer, onProceed } = props;
+    const { open, onClose, onProceed, message= 'Are you sure you want to clear cart?' } = props;
     const [isSuccess, setIsSuccess] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const router = useRouter();
 
-    const selectedDevice = getAutoCompleteValue(customer?.phones, claim.phoneId);
 
     const handleOnProceed = async () => {
         setIsLoading(true)
@@ -24,19 +19,6 @@ const ConfirmationDialog = props => {
         }
         setIsLoading(false);
     }
-
-    const handleOnContinue = () => {
-        router.push('/dashboard/claims-status')
-        onClose?.();
-    }
-
-    const formatCustomerName = (value ) => {
-        if (claim?.claimType === claimsTypes.DAMAGE.value){
-            return getMaskedName(value);
-        }
-        return value;
-    }
-
 
     useEffect(() => {
         if(open){
@@ -50,36 +32,23 @@ const ConfirmationDialog = props => {
             <DMTDialog
                 open={open}
                 onClose={onClose}
+                fullScreen={false}
             >
-                <DialogContent sx={{ display: 'flex', gap:1, flexDirection: 'column'}}>
-                    <Collapse in={Boolean(isSuccess === null)}>
-                        <Typography variant={'h5'} color={'primary'} gutterBottom>
-                            {"Confirmation"}
-                        </Typography>
-                        <Typography>
-                            {"By submitting this claim, you confirm that the claim is compliant with Sanlam Claims Submission Policy."}
-                        </Typography>
-                        <Box sx={{  backgroundColor: theme => alpha(theme.palette.primary.main, 0.1), p:2, borderRadius: 2}}>
-                            <PropertyItem label={"Customer Name"} value={formatCustomerName(customer?.customerName)}/>
-                            <PropertyItem label={"Claim Type"} value={claim?.claimType}/>
-                            <PropertyItem label={"Device IMEI"} value={selectedDevice?.imeiNumber}/>
-                            <PropertyItem label={"Total Cost"} value={formatCurrency(claim?.totalCost )}/>
-                        </Box>
-                        <DialogActions>
-                            <Button variant={'contained'} onClick={handleOnProceed} disabled={isLoading} color={'primary'}>
-                                {isLoading? "Submitting..." : "Yes, Proceed "}
-                            </Button>
-                        </DialogActions>
-                    </Collapse>
-                    <Collapse in={Boolean(isSuccess)}>
-                        {Boolean(isSuccess) && (
-                            <>
-                                <SuccessPage success={true}  message={"Claim has been submitted successfully!"} onContinue={handleOnContinue}/>
-                            </>
-                        )}
-                    </Collapse>
-
-
+                <DialogContent sx={{ display: 'flex', gap:1, alignItems: 'center', flexDirection: 'column'}}>
+                    <Typography variant={'h5'} color={'primary'} gutterBottom>
+                        {"Confirmation"}
+                    </Typography>
+                    <Typography align={'center'}>
+                        {message}
+                    </Typography>
+                    <Box sx={{ mt:2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap:2 }}>
+                        <Button variant={'outlined'} onClick={onClose} disabled={isLoading} color={'primary'}>
+                            {"Cancel "}
+                        </Button>
+                        <Button variant={'contained'} onClick={handleOnProceed} disabled={isLoading} color={'primary'}>
+                            {isLoading? "Processing" : "Yes, Proceed "}
+                        </Button>
+                    </Box>
                 </DialogContent>
             </DMTDialog>
         </>

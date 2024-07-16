@@ -171,3 +171,11 @@ export const discountedPrice = (price, discount) => {
     }
     return price;
 }
+
+export const computeGrandTotal = (items) => {
+    let total = 0;
+    items.forEach((item) => {
+        total += item?.Product?.discounted_price * item?.prod_qty
+    });
+    return total;
+}

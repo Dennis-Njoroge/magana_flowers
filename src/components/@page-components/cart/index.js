@@ -14,7 +14,10 @@ const Cart = () => {
     const { user } = useAuth();
 
     const fetchCartProducts = async () => {
-        await dispatch(getCartProducts(user?.id));
+        const filters = {
+            userId: user?.id
+        }
+        await dispatch(getCartProducts(filters));
     }
 
     useEffect(() => {

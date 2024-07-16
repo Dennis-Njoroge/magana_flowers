@@ -27,14 +27,38 @@ export const createCart = async (data) => {
 
 export const getCarts = async (userId) => {
     if (!userId){
-        return [];
+        throw new Error('User ID not provided.');
     }
-    return await Cart.findAll({
+    const carts = await Cart.findAll({
         where: {
           user_id: userId
         },
         include: Product,
     });
+    const count = await getCartQuantity(userId);
+
+    return { success: true, message: "Cart fetched successfully!"  ,  data: carts, count }
+
+};
+
+export const getCart = async (userId, prodId) => {
+    if (!userId){
+        throw new Error('User ID not provided.');
+    }
+    const cart = await Cart.findOne({
+        where: {
+            user_id: userId,
+            prod_id: prodId,
+        },
+    });
+
+    if (!cart){
+        return null;
+    }
+    const count = await getCartQuantity(userId);
+
+    return { success: true, message: "Cart found successfully!"  ,  cart, count }
+
 };
 
 export const updateCart = async (id, data) => {
@@ -42,7 +66,8 @@ export const updateCart = async (id, data) => {
     const cart = await Cart.findByPk(id);
     if (cart) {
         const updatedCart = await cart.update(data);
-        return { success: true, message: "Product updated to cart."  , action: 'updated', cart: updatedCart }
+        const count = await getCartQuantity(data?.user_id);
+        return { success: true, message: "Product updated to cart."  , action: 'updated', cart: updatedCart, count }
     }
     return null;
 };
@@ -92,5 +117,6 @@ export const getCartQuantity = async (userId) => {
 
     return totalQuantity;
 };
+
 
 

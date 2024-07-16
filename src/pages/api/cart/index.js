@@ -1,13 +1,18 @@
 import {
     createCartHandler,
     deleteCartByUserIdHandler,
-    getAllCartsHandler
+    getAllCartsHandler, getCartHandler
 } from "@/controllers/CartController";
 
 export default async (req, res) => {
     switch (req.method) {
         case 'GET':
-            await getAllCartsHandler(req, res);
+            if (req.query?.prodId){
+                await getCartHandler(req, res);
+            }
+            else{
+                await getAllCartsHandler(req, res);
+            }
             break;
         case 'POST':
             await createCartHandler(req, res);

@@ -21,13 +21,6 @@ const DiscountedProducts = () => {
             <ProductsList
                 products={products}
             />
-            {/*<Card>*/}
-            {/*    <CardHeader title={'Discounted Products'}/>*/}
-            {/*    <CardContent>*/}
-            {/*        */}
-            {/*    </CardContent>*/}
-            {/*</Card>*/}
-
         </>
     )
 }

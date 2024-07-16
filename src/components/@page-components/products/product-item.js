@@ -16,6 +16,7 @@ const ProductItem = ({product}) => {
         setOpenDialog(false);
     }
 
+
     const productActions = () => {
         return (
             <Box sx={{ display: 'flex', flexDirection: 'column'}}>

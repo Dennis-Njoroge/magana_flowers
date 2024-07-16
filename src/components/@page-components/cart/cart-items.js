@@ -1,20 +1,24 @@
 import {useSelector} from "react-redux";
 import CartItem from "@/components/@page-components/cart/cart-item";
 import Box from "@mui/material/Box";
-import {Divider, Icon, Typography} from "@mui/material";
+import { Icon, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
-import {useState} from "react";
-import {formatCurrency} from "@/utils/helper-functions";
+import {computeGrandTotal, formatCurrency} from "@/utils/helper-functions";
 import NextLink from "next/link";
 import Checkout from "@/components/@page-components/cart/checkout";
+import ClearCartButton from "@/components/@page-components/cart/clear-cart-button";
+
+
 
 const CartItems = () => {
     const { cartProducts, cartCount } = useSelector(({cart}) => cart);
-    const [grandTotal, setGrandTotal] = useState(0);
-
     const formatCount = () => {
         return cartCount > 1 ? `${cartCount} Items` :  `${cartCount} Item`;
     }
+
+    const grandTotal = computeGrandTotal(cartProducts);
+
+
 
     return (
         <>
@@ -23,12 +27,7 @@ const CartItems = () => {
                     <b>Your Cart</b>
                     {` (${formatCount()})`}
                 </Typography>
-                <Button
-                    variant={'text'}
-                    startIcon={<Icon>clear</Icon>}
-                >
-                    {"Clear All"}
-                </Button>
+               <ClearCartButton/>
             </Box>
             {cartProducts.map((cartProduct) => (
                <CartItem key={cartProduct.id} cartProduct={cartProduct} />
@@ -50,7 +49,7 @@ const CartItems = () => {
                             {"Continue Shopping"}
                         </Button>
                     </NextLink>
-                    <Checkout/>
+                    <Checkout totalAmount={grandTotal}/>
                 </Box>
             </Box>
 

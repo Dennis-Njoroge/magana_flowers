@@ -22,6 +22,18 @@ export const getAllCartsHandler = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+export const getCartHandler = async (req, res) => {
+    try {
+        const carts = await cartRepository.getCart(req?.query?.userId, req?.query?.prodId);
+        if (!carts){
+            res.status(400).json({ message: "Item not on cart"});
+            return;
+        }
+        res.status(200).json(carts);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
 export const getCartQuantity = async (req, res) => {
     try{
