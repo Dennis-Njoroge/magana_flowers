@@ -1,7 +1,7 @@
 //removes tags from string
 import moment from "moment";
 import CurrencyFormat from "react-currency-format";
-import {ROLE_CLAIMS} from "@/utils/constants";
+import {PREFIX, ROLE_CLAIMS} from "@/utils/constants";
 
 
 export const sanitizeString = string => {
@@ -179,3 +179,10 @@ export const computeGrandTotal = (items) => {
     });
     return total;
 }
+
+export const generateOrderNumber = () => {
+    const randomNum = Math.floor(1000 + Math.random() * 9000); // Random 4-digit number
+    const year = new Date().getFullYear();
+    return `${PREFIX}/${randomNum}/${year}`;
+};
+

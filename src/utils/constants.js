@@ -27,6 +27,7 @@ export const COUNTRIES = [
 export const APP_NAME = "Magana Flowers Portal";
 export const AUTH_TOKEN_KEY = 'accessToken';
 export const AUTH_REFRESH_TOKEN_KEY = 'refreshToken';
+export const PREFIX  = 'MFL';
 
 export const claimsTypes = {
     DAMAGE: {
@@ -144,4 +145,13 @@ export const ROLE_CLAIMS = {
         PATHS.CLAIM_STATUS,
         PATHS.DISPATCHED_STATUS
     ]
+}
+
+export const ORDER_STATUS = {
+    PENDING: 'Pending',
+    APPROVED: 'Approved',
+    DISPATCHED: 'Dispatched',
+    DELIVERED: 'Delivered',
+    COMPLETED: 'Completed',
+    CANCELED: 'Cancelled',
 }
