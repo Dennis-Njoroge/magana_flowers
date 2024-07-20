@@ -36,7 +36,7 @@ const ShippingDetails  = sequalize.define(modelName, {
     },
     delivery_date: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
     },
 
 },{

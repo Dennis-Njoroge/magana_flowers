@@ -49,7 +49,7 @@ const CartItems = () => {
                             {"Continue Shopping"}
                         </Button>
                     </NextLink>
-                    <Checkout totalAmount={grandTotal}/>
+                    <Checkout cartProducts={cartProducts} totalAmount={grandTotal}/>
                 </Box>
             </Box>
 

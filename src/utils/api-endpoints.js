@@ -37,6 +37,8 @@ export const APP_API_URL = {
     PRODUCTS: '/api/products',
     CATEGORIES: '/api/categories',
     CART: '/api/cart',
+    ORDER: '/api/order',
+    PICK_UP_POINT: '/api/pick-up-point',
 
     /***************** CLAIM APIS **********************/
     MAKE_CLAIM: '/api/claims/make-claim',

@@ -14,10 +14,10 @@ export const createOrder = async (orderData) => {
     const transaction = await sequelize.transaction();
 
     try {
-        // Generate order number
+        // Generate orders number
         const orderNo = generateOrderNumber();
 
-        // Create order
+        // Create orders
         const order = await Order.create({
             order_no: orderNo,
             user_id: orderData.user_id,
@@ -27,7 +27,7 @@ export const createOrder = async (orderData) => {
             status: 'Pending',
         }, { transaction });
 
-        // Create order details
+        // Create orders details
         const orderDetailsPromises = orderData.products.map(product => {
             return OrderDetails.create({
                 order_id: order.id,
@@ -82,6 +82,10 @@ export const getOrders = async (filters) => {
         where: whereConditions,
         include: [
             {
+                model: User,
+                attributes: ['id','username'],
+            },
+            {
                 model: OrderDetails,
                 include: [
                     {
@@ -97,11 +101,12 @@ export const getOrders = async (filters) => {
                 include: [
                     {
                         model: User,
-                        attributes: ['id','username', 'email'],
+                        attributes: ['id','username'],
                     }
                 ]
             }
         ],
+        order: [['id', 'desc']]
     });
     return { success: true, message: "Orders fetched successfully!"  ,  data: orders}
 

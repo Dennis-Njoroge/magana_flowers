@@ -1,7 +1,7 @@
 //removes tags from string
 import moment from "moment";
 import CurrencyFormat from "react-currency-format";
-import {PREFIX, ROLE_CLAIMS} from "@/utils/constants";
+import {ORDER_STATUS, PREFIX, ROLE_CLAIMS} from "@/utils/constants";
 
 
 export const sanitizeString = string => {
@@ -185,4 +185,22 @@ export const generateOrderNumber = () => {
     const year = new Date().getFullYear();
     return `${PREFIX}/${randomNum}/${year}`;
 };
+
+export const orderStatusColor = (status) => {
+    if (!status){
+        return;
+    }
+    let color;
+    if (status === ORDER_STATUS.PENDING){
+        color = 'warning'
+    }
+    else if(status === ORDER_STATUS.CANCELED){
+        color = 'error'
+    }
+    else{
+        color = 'success'
+    }
+
+    return color;
+}
 

@@ -20,7 +20,6 @@ const Shop = () => {
                     </Grid>
                     <Grid item xs={12} md={3} sm={12}>
                     </Grid>
-                    <Grid></Grid>
                 </Grid>
             </Box>
         </>

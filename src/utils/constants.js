@@ -117,6 +117,7 @@ export const PATHS = {
     DASHBOARD: '/dashboard',
     SHOP: '/dashboard/shop',
     CART: '/dashboard/cart',
+    ORDER: '/dashboard/orders',
     DAMAGE_CLAIMS: '/dashboard/damage-claims',
     THEFT_CLAIMS: '/dashboard/theft-claims',
     CREDIT_LIFE_CLAIMS: '/dashboard/credit-life-claims',

@@ -35,12 +35,12 @@ const ProductCategories = () => {
                 backgroundColor: 'background.paper',
                 boxShadow: 2,
                 borderRadius: 1,
-                p:2
+                p:2,
             }}>
                 <Typography variant={'subtitle1'} gutterBottom>
                     {"Categories "}
                 </Typography>
-                <Box sx={{ display: 'flex', gap:1}}>
+                <Box sx={{ display: 'flex', gap:1, overflowX: 'auto'}}>
                     <DMTChip
                         label={'All'}
                         color={ Boolean(!router.query?.category || router.query?.category === 'All') ? "primary" : "default"}
