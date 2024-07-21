@@ -156,3 +156,19 @@ export const ORDER_STATUS = {
     COMPLETED: 'Completed',
     CANCELED: 'Cancelled',
 }
+
+export const USER_TYPES = {
+    CUSTOMER: 'customer',
+    FINANCE: 'finance manager',
+    SHIPMENT_MANAGER: 'shipment manager',
+    DRIVER: 'driver',
+    ADMIN: 'admin'
+}
+
+export const ORDER_ACTIONS = {
+    ["CUSTOMER"]:{
+        [ORDER_STATUS.PENDING]: [
+
+        ]
+    }
+}

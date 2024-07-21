@@ -9,18 +9,18 @@ import RoleGuard from "@/hocs/role-guard";
 const quickActions = [
     {
         id: 1,
-        label: 'Place an orders',
-        link: '/dashboard/damage-claims'
+        label: 'Place Order',
+        link: '/dashboard/cart'
     },
     {
         id: 2,
-        label: 'Track my orders(s)',
+        label: 'Track Orders',
         link: '/dashboard/theft-claims'
     },
     {
         id: 5,
-        label: 'Check my account',
-        link: '/dashboard/credit-life-claims'
+        label: 'Check Account',
+        link: '/dashboard/account'
     },
 ];
 

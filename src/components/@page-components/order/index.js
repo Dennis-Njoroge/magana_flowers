@@ -26,7 +26,7 @@ const Order = () => {
         <>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2}}>
                 <OrderStatusFilter onSearch={fetchAllOrders} />
-                <OrderList orders={orders}/>
+                <OrderList orders={orders} onRefresh={() => fetchAllOrders(orderStatus)}/>
             </Box>
         </>
     )

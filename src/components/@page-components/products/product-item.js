@@ -35,9 +35,9 @@ const ProductItem = ({product}) => {
                     >
                         {"Quick View"}
                     </Button>
-                    <IconButton color={'primary'} sx={{ backgroundColor: 'light.main' }}>
-                        <Icon>add_shopping_cart</Icon>
-                    </IconButton>
+                    {/*<IconButton color={'primary'} sx={{ backgroundColor: 'light.main' }}>*/}
+                    {/*    <Icon>add_shopping_cart</Icon>*/}
+                    {/*</IconButton>*/}
                 </Box>
             </Box>
         )

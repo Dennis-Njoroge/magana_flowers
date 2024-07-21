@@ -3,22 +3,25 @@ import {Collapse, DialogActions, DialogContent, Typography} from "@mui/material"
 import Button from "@mui/material/Button";
 import {useEffect, useState} from "react";
 import Box from "@mui/material/Box";
+import DMTDriversSelect from "@/components/@shared-components/forms/select-drivers";
 
 
 const ConfirmationDialog = props => {
-    const { open, onClose, onProceed, message= 'Are you sure you want to clear cart?' } = props;
+    const { open, onClose, onProceed, message= 'Are you sure you want to clear cart?', showForm } = props;
     const [isSuccess, setIsSuccess] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-
-
-    const handleOnProceed = async () => {
+    const [driverId, setDriverId] = useState(null);
+    const handleOnProceed = async e => {
+        e.preventDefault();
         setIsLoading(true)
-        const res = await onProceed();
+        const res = await onProceed(driverId);
         if (res){
             setIsSuccess(true);
         }
         setIsLoading(false);
     }
+
+
 
     useEffect(() => {
         if(open){
@@ -41,14 +44,31 @@ const ConfirmationDialog = props => {
                     <Typography align={'center'}>
                         {message}
                     </Typography>
-                    <Box sx={{ mt:2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap:2 }}>
-                        <Button variant={'outlined'} onClick={onClose} disabled={isLoading} color={'primary'}>
-                            {"Cancel "}
-                        </Button>
-                        <Button variant={'contained'} onClick={handleOnProceed} disabled={isLoading} color={'primary'}>
-                            {isLoading? "Processing" : "Yes, Proceed "}
-                        </Button>
+                    <Box component={'form'} onSubmit={handleOnProceed}>
+                        {showForm && (
+                            <>
+                                <DMTDriversSelect
+                                    id={'driver_select'}
+                                    label={'Select Driver'}
+                                    name={'driverId'}
+                                    placeholder={'-- Select Driver --'}
+                                    value={driverId}
+                                    required={true}
+                                    fullWidth={true}
+                                    onChange={values => setDriverId(values?.id)}
+                                />
+                            </>
+                        )}
+                        <Box sx={{ mt:2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap:2 }}>
+                            <Button variant={'outlined'} onClick={onClose} disabled={isLoading} color={'primary'}>
+                                {"Cancel "}
+                            </Button>
+                            <Button variant={'contained'} type={'submit'}  disabled={isLoading} color={'primary'}>
+                                {isLoading? "Processing" : "Yes, Proceed "}
+                            </Button>
+                        </Box>
                     </Box>
+
                 </DialogContent>
             </DMTDialog>
         </>

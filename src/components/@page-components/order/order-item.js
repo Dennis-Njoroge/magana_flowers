@@ -3,17 +3,32 @@ import {Divider, Typography} from "@mui/material";
 import {formatCurrency, formatDate, orderStatusColor} from "@/utils/helper-functions";
 import PropertyItem from "@/components/@shared-components/list/property-item";
 import DMTChip from "@/components/@shared-components/chip";
+import {useState} from "react";
+import OrderPreviewDialog from "@/components/@page-components/order/order-preview-dialog";
 
-const OrderItem = ({ order }) => {
+const OrderItem = ({ order, onRefresh }) => {
     const color = orderStatusColor(order?.status);
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const handleOnOpen = () => {
+        setOpenDialog(true);
+    }
+    const handleOnClose = () => {
+        setOpenDialog(false);
+    }
 
     return (
         <>
-            <Box sx={{
+            <Box
+                onClick={handleOnOpen}
+                sx={{
                 backgroundColor: 'background.paper',
                 p:2,
                 borderTop: 4,
-                borderColor: `${color}.main`
+                borderColor: `${color}.main`,
+                '&:hover':{
+                    cursor: 'pointer'
+                },
             }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
                     <Typography>
@@ -42,8 +57,13 @@ const OrderItem = ({ order }) => {
                         value={<DMTChip label={order?.status} color={color}/>}
                     />
                 </Box>
-
             </Box>
+            <OrderPreviewDialog
+                open={openDialog}
+                onClose={handleOnClose}
+                order={order}
+                onRefresh={onRefresh}
+            />
         </>
     )
 }

@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import * as userRepository from '@/repositories/UserRepository';
 import bcrypt from "bcryptjs";
 
+
 export const createUser = async (req, res) => {
     try {
         const user = await userRepository.createUser(req.body);
@@ -16,6 +17,15 @@ export const createUser = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 }
+
+export const getAllUsersHandler = async (req, res) => {
+    try {
+        const users = await userRepository.getUsers(req?.query);
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
 export const loginUser = async (req, res) => {
     const { email, password } = req.body;

@@ -49,9 +49,9 @@ const User  = sequalize.define(modelName, {
             user.password = await bcrypt.hash(user.password, salt);
         }
     },
-    // defaultScope: {
-    //     attributes: { exclude: ['password'] }  // Hide the password by default
-    // }
+    defaultScope: {
+        attributes: { exclude: ['password'] }  // Hide the password by default
+    }
 })
 
 export default User;
