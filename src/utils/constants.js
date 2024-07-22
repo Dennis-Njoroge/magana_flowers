@@ -77,7 +77,7 @@ export const userMenus = [
     },
     {
         "pageName": "My Account",
-        "route": "/dashboard/account",
+        "route": "/dashboard/my-account",
         "enabled": true,
         "pageIcon": "manage_accounts"
     },
@@ -116,6 +116,7 @@ export const userMenus = [
 export const PATHS = {
     DASHBOARD: '/dashboard',
     SHOP: '/dashboard/shop',
+    MY_ACCOUNT: '/dashboard/my-account',
     CART: '/dashboard/cart',
     ORDER: '/dashboard/orders',
     DAMAGE_CLAIMS: '/dashboard/damage-claims',

@@ -209,7 +209,7 @@ export const generateReceipt = async (req, res) => {
     const orderDate = formatDate(order?.order_date, 'DD/MM/YYYY HH:mm a')
     // Define starting positions
     const pageWidth = doc.page.width;
-    const margin = 10;
+    const margin = 50;
     const columnWidth = (pageWidth - 2 * margin) / 2; // Divide into 3 columns
     const startY = doc.y;
 

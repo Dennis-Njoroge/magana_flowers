@@ -15,12 +15,12 @@ const quickActions = [
     {
         id: 2,
         label: 'Track Orders',
-        link: '/dashboard/theft-claims'
+        link: '/dashboard/orders'
     },
     {
         id: 5,
         label: 'Check Account',
-        link: '/dashboard/account'
+        link: '/dashboard/my-account'
     },
 ];
 
@@ -53,12 +53,8 @@ const WelcomeBoard = () => {
                                                 borderRadius: 1,
                                                 color: 'inherit',
                                                 borderColor: 'inherit'
-                                                // backgroundColor: theme => alpha(theme.palette[color].main, 0.08),
-                                                // fontWeight: 'bold',
-                                                // fontSize: 'inherit',
                                             }}
                                             color={'primary'}
-                                            //key={index}
                                             label={action.label}
                                         />
                                     </RoleGuard>

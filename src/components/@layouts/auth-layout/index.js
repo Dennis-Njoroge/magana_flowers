@@ -10,7 +10,7 @@ const AuthLayout = props => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: '100%',
+                height: '100vh',
                 backgroundImage: 'url(/static/background2.png)',
                 backgroundColor: 'primary.main',
                 backgroundSize: 'cover',
