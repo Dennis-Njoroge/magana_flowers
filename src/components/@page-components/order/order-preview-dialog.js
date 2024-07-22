@@ -17,6 +17,7 @@ import OrderActionButton from "@/components/@page-components/order/order-action-
 import {ORDER_STATUS, USER_TYPES} from "@/utils/constants";
 import {useEffect, useState} from "react";
 import {useAuth} from "@/hooks/use-auth";
+import DownloadReceiptButton from "@/components/@page-components/order/download-receipt-button";
 
 
 
@@ -157,16 +158,22 @@ const OrderPreviewDialog = ({ open, onClose, order, onRefresh}) => {
                             value={order?.ShippingDetail?.User?.username}
                         />
                     </Box>
-                    <DialogActions>
-                        {actions.map((action) => (
-                            <OrderActionButton
-                                key={action.status}
-                                order={order}
-                                onClose={handleOnCloseRefresh}
-                                {...action}
-                            />
-                        ))}
-                    </DialogActions>
+                    <Box sx={{mt:2, display: 'flex', justifyContent: 'space-between'}}>
+                        <DownloadReceiptButton
+                            order={order}
+                        />
+                        <Box>
+                            {actions.map((action) => (
+                                <OrderActionButton
+                                    key={action.status}
+                                    order={order}
+                                    onClose={handleOnCloseRefresh}
+                                    {...action}
+                                />
+                            ))}
+                        </Box>
+
+                    </Box>
                 </DialogContent>
             </DMTDialog>
         </>

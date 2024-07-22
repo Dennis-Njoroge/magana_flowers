@@ -1,4 +1,5 @@
 import * as orderRepository from '@/repositories/OrderRepository';
+import {generateReceipt} from "@/repositories/OrderRepository";
 
 
 export const createOrderHandler = async (req, res) => {
@@ -35,6 +36,21 @@ export const updateOrderStatusHandler = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+export const generateReceiptHandler = async (req, res) => {
+    try{
+        return await generateReceipt(req, res);
+        // if (receipt){
+        //     res.status(200).json(receipt);
+        // }
+        // else{
+        //     res.status(404).json({ error: 'Order not found' });
+        // }
+    }
+    catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
 
 // export const deleteCartHandler = async (req, res) => {
 //     try {

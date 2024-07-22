@@ -19,6 +19,7 @@ export const searchUserByEmail = async (email) => {
 
 export const getUsers = async (filters) => {
     return await User.findAll({
-        where: filters
+        where: filters,
+        attributes: { exclude: ['password'] }
     });
 }

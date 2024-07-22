@@ -39,9 +39,12 @@ class OrderApis{
             })
         })
     };
-    async fetchORDERCount (values) {
+    async generateReceipt (values) {
         return new Promise(async (resolve, reject) => {
-            axiosInstance.post(APP_API_URL.ORDER, values).then( response => {
+            const config = {
+                //responseType: 'blob'
+            }
+            axiosInstance.post(`${APP_API_URL.ORDER}/${values.id}/receipt`, values, config).then( response => {
                 resolve(response.data);
             }).catch(e => {
                 reject(new Error(e.message))
