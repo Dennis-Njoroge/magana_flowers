@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import SidebarMenuButton from "@/components/@shared-components/buttons/sidebar-menu-button";
 import RoleGuard from "@/hocs/role-guard";
+import {useSelector} from "react-redux";
 
 
 const ModernSidebarItem = (props) => {
@@ -29,6 +30,7 @@ const ModernSidebarItem = (props) => {
         setOpen((prevOpen) => !prevOpen);
     };
     const theme = useTheme();
+    const { cartCount } = useSelector(({ cart }) => cart);
 
 
     // Branch
@@ -82,6 +84,7 @@ const ModernSidebarItem = (props) => {
             >
                 <NextLink style={{width: '100%', textDecoration: "none"}} href={path ?? "/"} passHref>
                     <SidebarMenuButton
+                        badgeCount={Boolean(path?.includes('cart')) ? cartCount : 0}
                         isActive={active}
                         icon = {icon}
                         label={title}

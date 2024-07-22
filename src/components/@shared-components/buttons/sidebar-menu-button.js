@@ -4,9 +4,10 @@ import {
     MdChevronRight as ChevronRight,
     MdOutlineExpandMore as ExpandMore
 } from "react-icons/md";
+import Badge from "@mui/material/Badge";
 
 const SidebarMenuButton = props => {
-    const {open, icon, width='auto', isActive, label, color = 'inherit', backgroundColor, isParent = false ,...others} = props;
+    const {badgeCount= 0, open, icon, width='auto', isActive, label, color = 'inherit', backgroundColor, isParent = false ,...others} = props;
 
     return (
         <>
@@ -43,9 +44,11 @@ const SidebarMenuButton = props => {
                 }}
 
                 >
+                    <Badge badgeContent={badgeCount} color="primary">
                     <Icon fontSize={isParent ? 'medium' : 'small'} color={"inherit"}>
                         {icon}
                     </Icon>
+                    </Badge>
                     <Typography   variant={'subtitle1'} color={"inherit"}>
                         {label}
                     </Typography>

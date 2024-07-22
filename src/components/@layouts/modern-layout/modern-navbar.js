@@ -11,6 +11,7 @@ import {
 import Box from "@mui/material/Box";
 import GlobalSearchInput from "@/components/@layouts/modern-layout/global-search-input";
 import NotificationBadge from "@/components/@layouts/modern-layout/notification-badge";
+import CartCountIcon from "@/components/@layouts/modern-layout/cart-count-icon";
 
 
 const AppBar = styled(MuiAppBar, {
@@ -77,6 +78,7 @@ const ModernNavbar = props => {
 
                     <Box sx={{flex: '1 0 auto'}}/>
                     {/*<NotificationBadge/>*/}
+                    <CartCountIcon/>
                     <AccountButton/>
                 </Toolbar>
             </AppBar>

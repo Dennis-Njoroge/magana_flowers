@@ -11,13 +11,13 @@ const ProfileCard =() => {
                 p:2,
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'space-around',
+                justifyContent: 'space-between',
                 //flexDirection: 'column',
                 backgroundColor: 'primary.main',
                 color: 'primary.contrastText'
         }}
         >
-            <Box sx={{ flex:0.5 }} >
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2}}>
                 <Avatar
                     sx={{
                         height: 50,
@@ -28,14 +28,14 @@ const ProfileCard =() => {
                 >
                     {/*{getInitials(user?.name)}*/}
                 </Avatar>
-            </Box>
-            <Box sx={{ flex:2}}>
-                <Typography sx={{ mt: 1}} variant={'h6'}>
-                    {user?.username}
-                </Typography>
-                <Typography variant={'caption'}>
-                    {user?.userType?.toUpperCase()} ACCOUNT
-                </Typography>
+                <Box>
+                    <Typography variant={'h6'}>
+                        {user?.username}
+                    </Typography>
+                    <Typography variant={'caption'}>
+                        {user?.userType?.toUpperCase()} ACCOUNT
+                    </Typography>
+                </Box>
             </Box>
             <Box>
                 <Button size={'small'} variant={'outlined'} sx={{ color: 'inherit', borderColor: 'inherit'}}>

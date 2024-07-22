@@ -66,6 +66,16 @@ export const addToCart = (values) => async dispatch => {
     }
 }
 
+export const getCartCount = (values) => async dispatch => {
+    try {
+        const res = await cartApis.fetchCartCount(values);
+        dispatch(setCartCount(res?.count));
+    }
+    catch (e) {
+        console.log(e.message);
+    }
+}
+
 
 export const updateCart = (values) => async dispatch => {
     try{

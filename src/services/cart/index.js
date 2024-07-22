@@ -35,8 +35,11 @@ class CartApis{
         })
     };
     async fetchCartCount (values) {
+        const config = {
+            params: values
+        }
         return new Promise(async (resolve, reject) => {
-            axiosInstance.post(APP_API_URL.CART, values).then( response => {
+            axiosInstance.get(`${APP_API_URL.CART}/count`, config).then( response => {
                 resolve(response.data);
             }).catch(e => {
                 reject(new Error(e.message))
