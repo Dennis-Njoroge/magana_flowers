@@ -56,13 +56,13 @@ export const approveUserHandler = async (req, res) => {
 export const changeResetPasswordHandler = async (req, res) => {
     try {
 
-        if (!req.body.action || (req.body.action !== PASSWORD_ACTIONS.FORGOT && req.body.action !== PASSWORD_ACTIONS.CHANGE) ){
+        if (!req.body.action || (req.body.action !== PASSWORD_ACTIONS.FORGOT && req.body.action !== PASSWORD_ACTIONS.CHANGE && req.body.action !== PASSWORD_ACTIONS.RESET ) ){
             return res.status(400).json({ error: 'No/invalid action provided.' });
         }
 
-        if (!req.body.password){
-            return res.status(400).json({ error: 'No password provided.' });
-        }
+        // if (!req.body.password){
+        //     return res.status(400).json({ error: 'No password provided.' });
+        // }
 
         const user = await userRepository.searchUserByEmail(req.body.email);
         if (!user){
@@ -82,15 +82,17 @@ export const changeResetPasswordHandler = async (req, res) => {
             }
         }
 
+        const newPassword = PASSWORD_ACTIONS.RESET ? '12345678' : req.body.password
+
         const salt = await bcrypt.genSalt(10);
-        const password = await bcrypt.hash(req.body.password, salt);
+        const password = await bcrypt.hash(newPassword, salt);
 
         const updatedUser = await userRepository.updateUser(user.id, { password });
         if (!updatedUser){
             return res.status(400).json({ user: updatedUser, message: 'An error occurred while updating password.' });
         }
 
-        res.status(201).json({ success: true, message: 'User status updated successfully', });
+        res.status(201).json({ success: true, message: 'Password updated successfully', });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }

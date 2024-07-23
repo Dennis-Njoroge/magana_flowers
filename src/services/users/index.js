@@ -15,6 +15,45 @@ class UsersApis{
             })
         })
     };
+
+    async addUser (values) {
+        return new Promise(async (resolve, reject) => {
+            axiosInstance.post(APP_API_URL.USERS, values ).then( response => {
+                resolve(response.data);
+            }).catch(e => {
+                reject(new Error(e.message))
+            })
+        })
+    };
+
+    async approveUser (values) {
+        return new Promise(async (resolve, reject) => {
+            axiosInstance.post(`${APP_API_URL.USERS}/${values.id}`, values).then( response => {
+                resolve(response.data);
+            }).catch(e => {
+                reject(new Error(e.message))
+            })
+        })
+    };
+    async updateUser (values) {
+        return new Promise(async (resolve, reject) => {
+            axiosInstance.put(`${APP_API_URL.USERS}/${values.id}`, values).then( response => {
+                resolve(response.data);
+            }).catch(e => {
+                reject(new Error(e.message))
+            })
+        })
+    };
+
+    async changePassword (values) {
+        return new Promise(async (resolve, reject) => {
+            axiosInstance.post(`${APP_API_URL.USERS}/change-password`, values).then( response => {
+                resolve(response.data);
+            }).catch(e => {
+                reject(new Error(e.message))
+            })
+        })
+    };
 }
 
 export const usersApis = new UsersApis();

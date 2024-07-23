@@ -142,7 +142,7 @@ const DMTDataGrid = props => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {isLoading || loading ? (
+                        {((isLoading || loading) && data?.length < 1) ? (
                             <>
                                 <TableCell colspan={columns.length}>
                                     <Box sx={{

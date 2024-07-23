@@ -18,6 +18,11 @@ const quickActions = [
         link: '/dashboard/orders'
     },
     {
+        id: 3,
+        label: 'Manage Users',
+        link: '/dashboard/users'
+    },
+    {
         id: 5,
         label: 'Check Account',
         link: '/dashboard/my-account'
@@ -30,6 +35,8 @@ const WelcomeBoard = () => {
     const handleOnSelect = (link) => {
         router.push(link);
     }
+
+    const firstName = user?.username?.split(" ")[0]
     return (
         <>
             <Card sx={{
@@ -38,7 +45,7 @@ const WelcomeBoard = () => {
                 <CardContent sx={{ p: -1}}>
                     <Box>
                         <Typography variant={'h5'} gutterBottom>
-                            {`${getGreetings()} ${user?.username ?? ''}, `}
+                            {`${getGreetings()} ${firstName ?? ''}, `}
                         </Typography>
                         <Typography variant={'h6'}>
                             {"What would you like to do today?"}

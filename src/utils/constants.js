@@ -64,6 +64,25 @@ export const userMenus = [
         "pageIcon": "local_mall"
     },
     {
+        "pageName": "Customers",
+        "route": "/dashboard/customers",
+        "enabled": true,
+        "pageIcon": "people"
+    },
+    {
+        "pageName": "Employees",
+        "route": "/dashboard/employees",
+        "enabled": true,
+        "pageIcon": "engineering"
+    },
+    {
+        "pageName": "Users Accounts",
+        "route": "/dashboard/users",
+        "enabled": true,
+        "pageIcon": "people"
+    },
+
+    {
         "pageName": "My Cart",
         "route": "/dashboard/cart",
         "enabled": true,
@@ -81,36 +100,7 @@ export const userMenus = [
         "enabled": true,
         "pageIcon": "manage_accounts"
     },
-    // {
-    //     "pageName": "Orders",
-    //     "route": "/dashboard/theft-claims",
-    //     "enabled": true,
-    //     "pageIcon": "published_with_changes"
-    // },
-    // {
-    //     "pageName": "Purchases",
-    //     "route": "/dashboard/theft-claims",
-    //     "enabled": true,
-    //     "pageIcon": "published_with_changes"
-    // },
-    // {
-    //     "pageName": "Products",
-    //     "route": "/dashboard/theft-claims",
-    //     "enabled": true,
-    //     "pageIcon": "published_with_changes"
-    // },
-    // {
-    //     "pageName": "Settings",
-    //     "route": "/dashboard/credit-life-claims",
-    //     "enabled": true,
-    //     "pageIcon": "health_and_safety"
-    // },
-    // {
-    //     "pageName": "User Management",
-    //     "route": "/dashboard/users",
-    //     "enabled": true,
-    //     "pageIcon": "verified",
-    // },
+
 ]
 
 export const PATHS = {
@@ -119,33 +109,41 @@ export const PATHS = {
     MY_ACCOUNT: '/dashboard/my-account',
     CART: '/dashboard/cart',
     ORDER: '/dashboard/orders',
-    DAMAGE_CLAIMS: '/dashboard/damage-claims',
-    THEFT_CLAIMS: '/dashboard/theft-claims',
-    CREDIT_LIFE_CLAIMS: '/dashboard/credit-life-claims',
-    CLAIM_STATUS: '/dashboard/claims-status',
-    DISPATCHED_STATUS: '/dashboard/dispatched-services'
+    PAYMENTS: '/dashboard/payments',
+    PRODUCTS: '/dashboard/products',
+    USERS: '/dashboard/users',
+    CUSTOMERS: '/dashboard/customers',
+    EMPLOYEES: '/dashboard/employees',
 }
+
+export const USER_TYPES = {
+    CUSTOMER: 'customer',
+    FINANCE: 'finance manager',
+    SHIPMENT_MANAGER: 'shipment manager',
+    DRIVER: 'driver',
+    ADMIN: 'admin'
+}
+
 export const ROLE_CLAIMS = {
-    1 : [
+    [USER_TYPES.CUSTOMER] : [
         PATHS.DASHBOARD,
-        PATHS.DAMAGE_CLAIMS,
-        PATHS.CLAIM_STATUS,
-        PATHS.DISPATCHED_STATUS
+        PATHS.SHOP,
+        PATHS.CART,
+        PATHS.ORDER,
+        PATHS.MY_ACCOUNT
     ],
-    2: [
+    [USER_TYPES.ADMIN]: [
         PATHS.DASHBOARD,
-        PATHS.DAMAGE_CLAIMS,
-        PATHS.THEFT_CLAIMS,
-        PATHS.CLAIM_STATUS,
-        PATHS.DISPATCHED_STATUS
+        PATHS.PRODUCTS,
+        PATHS.PAYMENTS,
+        PATHS.USERS,
+        PATHS.CUSTOMERS,
+        PATHS.EMPLOYEES,
+        PATHS.MY_ACCOUNT
     ],
-    3: [
+    [USER_TYPES.FINANCE]: [
         PATHS.DASHBOARD,
-        PATHS.DAMAGE_CLAIMS,
-        PATHS.THEFT_CLAIMS,
-        PATHS.CREDIT_LIFE_CLAIMS,
-        PATHS.CLAIM_STATUS,
-        PATHS.DISPATCHED_STATUS
+        PATHS.ORDER
     ]
 }
 
@@ -158,13 +156,7 @@ export const ORDER_STATUS = {
     CANCELED: 'Cancelled',
 }
 
-export const USER_TYPES = {
-    CUSTOMER: 'customer',
-    FINANCE: 'finance manager',
-    SHIPMENT_MANAGER: 'shipment manager',
-    DRIVER: 'driver',
-    ADMIN: 'admin'
-}
+
 
 export const ORDER_ACTIONS = {
     ["CUSTOMER"]:{
@@ -176,5 +168,6 @@ export const ORDER_ACTIONS = {
 
 export const PASSWORD_ACTIONS = {
     CHANGE: 'CHANGE_PASSWORD',
-    FORGOT: 'FORGOT_PASSWORD'
+    FORGOT: 'FORGOT_PASSWORD',
+    RESET: 'RESET_PASSWORD',
 }

@@ -8,12 +8,11 @@ import {useAuth} from "@/hooks/use-auth";
 const shopDetails = {
     name: "Magana Flowers",
     contact: "020 2017651",
-    email: "magana@gmail.com",
+    email: "info@magana.com",
     location: "Karuri, Naivasha"
 }
 
 const BusinessDetailsCard = () => {
-    const { user } = useAuth();
     return (
         <>
             <Card sx={{backgroundColor: theme => alpha(theme.palette.primary.main, 0.1)}}>
@@ -23,7 +22,7 @@ const BusinessDetailsCard = () => {
                     </Box>
                     <Box sx={{ flex: 1, display:'flex',flexDirection: 'column', gap:1}}>
                         <Typography variant={'h6'} color={'primary'}>
-                            {"Shop Details"}
+                            {"Company Info"}
                         </Typography>
                        <PropertyItem label={"Name"} value={shopDetails.name}/>
                        <PropertyItem label={"Contact"} value={shopDetails.contact}/>

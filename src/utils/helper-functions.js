@@ -61,6 +61,7 @@ export const formatCurrency = (amount, currency = 'Kes') => {
 }
 
 export const getGreetings = () => {
+    return 'Welcome Back';
     const currentHour = new Date().getHours();
 
     if (currentHour >= 5 && currentHour < 12) {

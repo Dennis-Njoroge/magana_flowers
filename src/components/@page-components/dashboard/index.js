@@ -4,8 +4,17 @@ import BusinessDetailsCard from "@/components/@page-components/dashboard/busines
 import WelcomeBoard from "@/components/@page-components/dashboard/welcome-board";
 import DiscountedProducts from "@/components/@page-components/dashboard/discounted-products";
 import ProductCategories from "@/components/@page-components/dashboard/product-categories";
+import {useAuth} from "@/hooks/use-auth";
+import {USER_TYPES} from "@/utils/constants";
+import Users from "@/components/@page-components/users";
+import {Typography} from "@mui/material";
+import AdminDashboard from "@/components/@page-components/dashboard/admin-dashboard";
 
 const Dashboard = () => {
+    const { user } = useAuth();
+    if (user?.userType === USER_TYPES.ADMIN){
+        return  <AdminDashboard/>
+    }
     return(
         <>
             <Box>
@@ -15,12 +24,26 @@ const Dashboard = () => {
                             <Grid item xs={12} md={12} sm={12}>
                                 <WelcomeBoard/>
                             </Grid>
-                            <Grid item xs={12} md={12} sm={12}>
-                                <ProductCategories/>
-                            </Grid>
-                            <Grid item xs={12} md={12} sm={12}>
-                                <DiscountedProducts/>
-                            </Grid>
+                            {user?.userType === USER_TYPES.CUSTOMER && (
+                                <>
+                                    <Grid item xs={12} md={12} sm={12}>
+                                        <ProductCategories/>
+                                    </Grid>
+                                    <Grid item xs={12} md={12} sm={12}>
+                                        <DiscountedProducts/>
+                                    </Grid>
+                                </>
+                            )}
+                            {user?.userType === USER_TYPES.ADMIN && (
+                                <>
+                                    <Grid item xs={12} md={12} sm={12}>
+                                        <Typography variant={'h6'} gutterBottom>
+                                            {"Recent Users"}
+                                        </Typography>
+                                        <Users/>
+                                    </Grid>
+                                </>
+                            )}
                         </Grid>
                     </Grid>
                     <Grid item xs={12} md={3} sm={12}>

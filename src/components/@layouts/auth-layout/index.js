@@ -10,14 +10,13 @@ const AuthLayout = props => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: '100vh',
+                minHeight: '100vh',
                 backgroundImage: 'url(/static/background2.png)',
                 backgroundColor: 'primary.main',
                 backgroundSize: 'cover',
                 backgroundAttachment: 'fixed',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                pb:5
             }}>
                 <Container sx={{ height: 'fit-content'}} maxWidth={'lg'}>
                     <Box sx={{

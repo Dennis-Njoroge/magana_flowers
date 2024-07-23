@@ -5,7 +5,7 @@ import Forbidden from "@/components/@page-components/forbidden";
 const RoleGuard = ({ children, path, page = false}) => {
     const { user } = useAuth();
 
-    if (!validateRole(path, user?.loginType)){
+    if (!validateRole(path, user?.userType)){
         if (page){
             return <Forbidden/>
         }

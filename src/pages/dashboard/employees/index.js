@@ -4,30 +4,30 @@ import Box from "@mui/material/Box";
 import ModernLayout from "@/components/@layouts/modern-layout";
 import {AuthGuard} from "@/hocs/auth-guard";
 import RoleGuard from "@/hocs/role-guard";
-import Shop from "@/components/@page-components/shop";
+import Employees from "@/components/@page-components/users/employees";
 
-const title = "Shop";
-const ShopPage = () => {
+const title = "Employees";
+const EmployeesPage = () => {
     return (
         <>
             <Head>
                 <title>{title} |{APP_NAME}</title>
             </Head>
             <Box>
-                <Shop/>
+                <Employees/>
             </Box>
         </>
     )
 }
 
-ShopPage.getLayout = page => (
+EmployeesPage.getLayout = page => (
     <AuthGuard>
         <ModernLayout title={title}>
-            <RoleGuard path={PATHS.SHOP} page={true}>
+            <RoleGuard path={PATHS.EMPLOYEES} page={true}>
                 {page}
             </RoleGuard>
         </ModernLayout>
-     </AuthGuard>
+    </AuthGuard>
 )
 
-export default ShopPage;
+export default EmployeesPage;

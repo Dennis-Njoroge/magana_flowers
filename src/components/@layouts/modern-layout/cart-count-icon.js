@@ -17,9 +17,6 @@ const CartCountIcon = () => {
         await router.push('/dashboard/cart')
     }
 
-    if (user?.userType !== USER_TYPES.CUSTOMER){
-        return null;
-    }
 
     useEffect(() => {
         if (router.isReady && user){
@@ -27,6 +24,11 @@ const CartCountIcon = () => {
             dispatch(getCartCount(values));
         }
     },[router.isReady, user]);
+
+
+    if (user?.userType !== USER_TYPES.CUSTOMER){
+        return null;
+    }
 
     return (
         <>
