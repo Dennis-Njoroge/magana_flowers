@@ -1,4 +1,4 @@
-import {createUser, getAllUsersHandler} from "@/controllers/UserController";
+import {createUserHandler, getAllUsersHandler} from "@/controllers/UserController";
 
 export default async (req, res) => {
     switch (req.method) {
@@ -6,7 +6,7 @@ export default async (req, res) => {
             await getAllUsersHandler(req, res);
             break;
         case 'POST':
-            await createUser(req, res);
+            await createUserHandler(req, res);
             break;
         default:
             res.setHeader('Allow', ['GET', 'POST']);

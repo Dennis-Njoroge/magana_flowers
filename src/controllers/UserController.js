@@ -1,15 +1,16 @@
 import jwt from 'jsonwebtoken';
 import * as userRepository from '@/repositories/UserRepository';
 import bcrypt from "bcryptjs";
+import {PASSWORD_ACTIONS} from "@/utils/constants";
 
 
-export const createUser = async (req, res) => {
+export const createUserHandler = async (req, res) => {
     try {
         const user = await userRepository.createUser(req.body);
         if (!user){
             res.status(400).json({
                 success: false,
-                message: "Account already exists. Please proceed with log in."
+                message: "Account already exists."
             })
         }
         res.status(201).json({ success: true, message: 'User registered successfully', });
@@ -18,10 +19,97 @@ export const createUser = async (req, res) => {
     }
 }
 
+export const updateUserHandler = async (req, res) => {
+    try {
+        if (!Boolean(req.body)){
+            return res.status(400).json({ error: "Invalid payload supplied!"})
+        }
+        const user = await userRepository.updateUser(req.query.id, req.body);
+        if (!user){
+            res.status(404).json({
+                success: false,
+                message: "User not found"
+            })
+        }
+        res.status(201).json({ success: true, message: 'User details updated successfully', });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+export const approveUserHandler = async (req, res) => {
+    try {
+        if (!req.body?.status){
+            return res.status(400).json({ error: "Status is required"})
+        }
+        const user = await userRepository.updateUser(req.query.id, req.body);
+        if (!user){
+            res.status(404).json({
+                success: false,
+                message: "User not found"
+            })
+        }
+        res.status(201).json({ success: true, message: 'User status updated successfully', });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+export const changeResetPasswordHandler = async (req, res) => {
+    try {
+
+        if (!req.body.action || (req.body.action !== PASSWORD_ACTIONS.FORGOT && req.body.action !== PASSWORD_ACTIONS.CHANGE) ){
+            return res.status(400).json({ error: 'No/invalid action provided.' });
+        }
+
+        if (!req.body.password){
+            return res.status(400).json({ error: 'No password provided.' });
+        }
+
+        const user = await userRepository.searchUserByEmail(req.body.email);
+        if (!user){
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            })
+        }
+
+        if (req.body.action === PASSWORD_ACTIONS.CHANGE){
+            if (!req.body.current_password){
+                return res.status(400).json({ error: 'No current password provided.' });
+            }
+            const isMatch = await bcrypt.compare(req.body.current_password, user.password);
+            if (!isMatch) {
+                return res.status(400).json({ message: 'Current password is invalid!' });
+            }
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const password = await bcrypt.hash(req.body.password, salt);
+
+        const updatedUser = await userRepository.updateUser(user.id, { password });
+        if (!updatedUser){
+            return res.status(400).json({ user: updatedUser, message: 'An error occurred while updating password.' });
+        }
+
+        res.status(201).json({ success: true, message: 'User status updated successfully', });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
+
 export const getAllUsersHandler = async (req, res) => {
     try {
         const users = await userRepository.getUsers(req?.query);
         res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+export const getUserHandler = async (req, res) => {
+    try {
+        const user = await userRepository.getUser(req?.query.id);
+        res.status(200).json(user);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

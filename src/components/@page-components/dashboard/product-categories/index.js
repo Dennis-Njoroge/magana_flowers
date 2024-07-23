@@ -44,7 +44,7 @@ const ProductCategories = () => {
                     <DMTChip
                         label={'All'}
                         color={ Boolean(!router.query?.category || router.query?.category === 'All') ? "primary" : "default"}
-                        onClick={() => handleOnClick("All")}
+                        onClick={() => handleOnClick(null)}
                         variant={Boolean(!router.query?.category || router.query?.category === 'All') ?  'filled' : 'outlined'}
                     />
                     {categories.map((categories) => {

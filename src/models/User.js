@@ -14,6 +14,18 @@ const User  = sequalize.define(modelName, {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    first_name:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    last_name:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    phone_no:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     email:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -47,11 +59,12 @@ const User  = sequalize.define(modelName, {
         beforeCreate: async (user) => {
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(user.password, salt);
-        }
+        },
     },
     // defaultScope: {
     //     attributes: { exclude: ['password'] }  // Hide the password by default
     // }
-})
+});
+
 
 export default User;

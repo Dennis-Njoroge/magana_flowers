@@ -16,7 +16,7 @@ const Register = () => {
                 first_name: values.firstName,
                 last_name: values.lastName,
                 username: `${values.firstName} ${values.lastName}`,
-                phoneNumber: values.lastName,
+                phone_no: values.phoneNumber,
                 user_type: "customer",
                 status: 'pending',
                 email: values.email,
@@ -55,9 +55,6 @@ const Register = () => {
                       onRegister={handleOnRegister}
                   />
                  </Box>
-             </Grid>
-             <Grid sx={{ display: {sm: 'none', xs:'none', md:'inherit'}}} p={4} item xs={0} sm={0} md={3}>
-                 {/*<RegisterBanner/>*/}
              </Grid>
          </Grid>
      </>

@@ -173,3 +173,8 @@ export const ORDER_ACTIONS = {
         ]
     }
 }
+
+export const PASSWORD_ACTIONS = {
+    CHANGE: 'CHANGE_PASSWORD',
+    FORGOT: 'FORGOT_PASSWORD'
+}

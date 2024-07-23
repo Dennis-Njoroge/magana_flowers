@@ -17,7 +17,7 @@ const CartCountIcon = () => {
         await router.push('/dashboard/cart')
     }
 
-    if (user.userType !== USER_TYPES.CUSTOMER){
+    if (user?.userType !== USER_TYPES.CUSTOMER){
         return null;
     }
 
