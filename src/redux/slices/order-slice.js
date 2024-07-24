@@ -59,15 +59,15 @@ export const getAllPaidOrders = () => async dispatch => {
     }
 }
 
-export const updateOrderStatus = (values, driverId = null) => async dispatch => {
-    try{
-        const res = await orderApis.updateOrderStatus(values, driverId);
-        toast.success(res?.message);
-    }
-    catch (e) {
-        console.log(e.message)
-    }
-}
+// export const updateOrderStatus = (values, driverId = null) => async dispatch => {
+//     try{
+//         const res = await orderApis.updateOrderStatus(values, driverId);
+//         toast.success(res?.message);
+//     }
+//     catch (e) {
+//         console.log(e.message)
+//     }
+// }
 
 
 export default OrderSlice.reducer;
