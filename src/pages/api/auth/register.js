@@ -1,11 +1,11 @@
 import {API_METHODS} from "@/utils/api-endpoints";
-import {createUser} from "@/controllers/UserController";
+import {createUserHandler} from "@/controllers/UserController";
 
 
 export default async function handler(req, res) {
     switch (req.method) {
         case API_METHODS.POST:
-            await createUser(req, res);
+            await createUserHandler(req, res);
             break;
         default:
             res.setHeader('Allow', ['POST']);

@@ -95,6 +95,12 @@ export const userMenus = [
         "pageIcon": "list_alt"
     },
     {
+        "pageName": "Payments",
+        "route": "/dashboard/payments",
+        "enabled": true,
+        "pageIcon": "money"
+    },
+    {
         "pageName": "My Account",
         "route": "/dashboard/my-account",
         "enabled": true,
@@ -137,6 +143,7 @@ export const ROLE_CLAIMS = {
         PATHS.PRODUCTS,
         PATHS.PAYMENTS,
         PATHS.USERS,
+        PATHS.ORDER,
         PATHS.CUSTOMERS,
         PATHS.EMPLOYEES,
         PATHS.MY_ACCOUNT

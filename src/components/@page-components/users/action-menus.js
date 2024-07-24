@@ -8,6 +8,7 @@ import {usersApis} from "@/services/users";
 import {toast} from "react-toastify";
 import {PASSWORD_ACTIONS} from "@/utils/constants";
 import ConfirmationDialog from "@/components/@shared-components/confirmation-dialog";
+import CreateUpdateUser from "@/components/@page-components/users/create-update-user";
 
 
 const UserActionMenus = props => {
@@ -142,6 +143,7 @@ const UserActionMenus = props => {
                                     aria-labelledby="composition-button"
                                     onKeyDown={handleListKeyDown}
                                 >
+                                    <CreateUpdateUser user={user} label={'Update'} onClose={handleClose} onRefresh={onRefresh}/>
                                     <MenuItem onClick={() => handleOnOpenDialog ('approve')} >
                                         {accountStatus} Account
                                     </MenuItem>

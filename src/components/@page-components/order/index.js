@@ -5,15 +5,29 @@ import {useEffect} from "react";
 import Box from "@mui/material/Box";
 import OrderStatusFilter from "@/components/@page-components/order/order-status-filter";
 import OrderList from "@/components/@page-components/order/order-list";
+import {USER_TYPES} from "@/utils/constants";
+import OrderDatagrid from "@/components/@page-components/order/order-datagrid";
 
 const Order = () => {
     const { orders, orderStatus } = useSelector(({ order }) => order);
     const { user } = useAuth();
     const dispatch = useDispatch();
+
     const fetchAllOrders = async (status) => {
-        const filters = {
-            user_id: user?.id ?? null,
+        let filters = {
             status: status
+        }
+        if (user?.userType === USER_TYPES.CUSTOMER){
+            filters = {
+                ...filters,
+                user_id: user?.id
+            }
+        }
+        if (user?.userType === USER_TYPES.DRIVER){
+            filters = {
+                ...filters,
+                driver_id: user?.id
+            }
         }
         await dispatch(getAllOrders(filters))
     }
@@ -26,7 +40,13 @@ const Order = () => {
         <>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2}}>
                 <OrderStatusFilter onSearch={fetchAllOrders} />
-                <OrderList orders={orders} onRefresh={() => fetchAllOrders(orderStatus)}/>
+                {user?.userType === USER_TYPES.ADMIN ? (
+                    <Box sx={{ mt: 10 }}>
+                        <OrderDatagrid data={orders}/>
+                    </Box>
+                ): (
+                    <OrderList orders={orders} onRefresh={() => fetchAllOrders(orderStatus)}/>
+                )}
             </Box>
         </>
     )

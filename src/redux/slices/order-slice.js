@@ -5,6 +5,7 @@ import {setIsLoading} from "@/redux/slices/loading";
 
 const initialState = {
     orders: [],
+    payments: [],
     orderStatus: null,
 }
 
@@ -15,6 +16,9 @@ const OrderSlice = createSlice({
         setOrderStatus: (state, action) => {
             state.orderStatus = action.payload
         },
+        setPayments: (state, action) => {
+          state.payments = action.payload;
+        },
         setOrders: (state, action) => {
             state.orders = action.payload;
         },
@@ -23,7 +27,8 @@ const OrderSlice = createSlice({
 
 export const {
     setOrders,
-    setOrderStatus
+    setOrderStatus,
+    setPayments
 } = OrderSlice.actions;
 
 export const getAllOrders = (filters) => async dispatch => {
@@ -39,6 +44,21 @@ export const getAllOrders = (filters) => async dispatch => {
         dispatch(setIsLoading(false))
     }
 }
+
+export const getAllPaidOrders = () => async dispatch => {
+    dispatch(setIsLoading(true));
+    try{
+        const res = await orderApis.fetchOrders({ payment_status: 'PAID'});
+        dispatch(setPayments(res.data));
+    }
+    catch (e) {
+        console.log(e.message)
+    }
+    finally {
+        dispatch(setIsLoading(false))
+    }
+}
+
 export const updateOrderStatus = (values, driverId = null) => async dispatch => {
     try{
         const res = await orderApis.updateOrderStatus(values, driverId);
