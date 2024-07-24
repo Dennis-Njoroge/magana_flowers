@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {toast} from "react-toastify";
 import {orderApis} from "@/services/order";
 import {setIsLoading} from "@/redux/slices/loading";
 
