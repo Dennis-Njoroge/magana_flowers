@@ -58,14 +58,14 @@ const UserActionMenus = props => {
         setOpen(false);
     };
 
-    const handleListKeyDown = (event) => {
-        if (event.key === 'Tab') {
-            event.preventDefault();
-            setOpen(false);
-        } else if (event.key === 'Escape') {
-            setOpen(false);
-        }
-    }
+    // const handleListKeyDown = (event) => {
+    //     if (event.key === 'Tab') {
+    //         event.preventDefault();
+    //         setOpen(false);
+    //     } else if (event.key === 'Escape') {
+    //         setOpen(false);
+    //     }
+    // }
 
     const handleOnApproveDisableUser = async () => {
         try{
@@ -136,12 +136,12 @@ const UserActionMenus = props => {
                         }}
                     >
                         <Paper>
-                            <ClickAwayListener onClickAway={handleClose}>
+                            {/*<ClickAwayListener onClickAway={handleClose}>*/}
                                 <MenuList
                                     autoFocusItem={open}
                                     id="composition-menu"
                                     aria-labelledby="composition-button"
-                                    onKeyDown={handleListKeyDown}
+                                    //onKeyDown={handleListKeyDown}
                                 >
                                     <CreateUpdateUser user={user} label={'Update'} onClose={handleClose} onRefresh={onRefresh}/>
                                     <MenuItem onClick={() => handleOnOpenDialog ('approve')} >
@@ -149,7 +149,7 @@ const UserActionMenus = props => {
                                     </MenuItem>
                                     <MenuItem onClick={() => handleOnOpenDialog ('reset')} >Reset Password</MenuItem>
                                 </MenuList>
-                            </ClickAwayListener>
+                            {/*</ClickAwayListener>*/}
                         </Paper>
                     </Grow>
                 )}

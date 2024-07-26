@@ -12,7 +12,7 @@ const orderStatusOpts = [
     ORDER_STATUS.COMPLETED
 ]
 
-const OrderStatusFilter = ({ onSearch }) => {
+const OrderStatusFilter = ({ onSearch, fixed = true }) => {
     const dispatch = useDispatch();
     const { orderStatus } = useSelector(({ order }) => order);
     const handleOnClick = async value => {
@@ -28,8 +28,8 @@ const OrderStatusFilter = ({ onSearch }) => {
             py:2,
             pl:2,
             pr: 4,
-            position: 'fixed',
-            top: 90,
+            position: fixed ? 'fixed' : 'relative',
+            top: fixed ? 90 : 0,
             width: '100%'
         }}>
             <Typography variant={'subtitle1'} gutterBottom>

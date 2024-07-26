@@ -8,7 +8,7 @@ import OrderList from "@/components/@page-components/order/order-list";
 import {USER_TYPES} from "@/utils/constants";
 import OrderDatagrid from "@/components/@page-components/order/order-datagrid";
 
-const Order = () => {
+const Order = ({ fixed = true }) => {
     const { orders, orderStatus } = useSelector(({ order }) => order);
     const { user } = useAuth();
     const dispatch = useDispatch();
@@ -39,13 +39,13 @@ const Order = () => {
     return (
         <>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2}}>
-                <OrderStatusFilter onSearch={fetchAllOrders} />
+                <OrderStatusFilter onSearch={fetchAllOrders} fixed={fixed}/>
                 {user?.userType === USER_TYPES.ADMIN ? (
-                    <Box sx={{ mt: 10 }}>
+                    <Box sx={{ mt: fixed ? 10 : 1 }}>
                         <OrderDatagrid data={orders}/>
                     </Box>
                 ): (
-                    <OrderList orders={orders} onRefresh={() => fetchAllOrders(orderStatus)}/>
+                    <OrderList fixed={fixed} orders={orders} onRefresh={() => fetchAllOrders(orderStatus)}/>
                 )}
             </Box>
         </>

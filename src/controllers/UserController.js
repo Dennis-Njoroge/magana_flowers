@@ -82,7 +82,7 @@ export const changeResetPasswordHandler = async (req, res) => {
             }
         }
 
-        const newPassword = PASSWORD_ACTIONS.RESET ? '12345678' : req.body.password
+        const newPassword = req.body.action === PASSWORD_ACTIONS.RESET ? '12345678' : req.body.password
 
         const salt = await bcrypt.genSalt(10);
         const password = await bcrypt.hash(newPassword, salt);

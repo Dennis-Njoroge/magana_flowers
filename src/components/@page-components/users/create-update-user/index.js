@@ -41,8 +41,9 @@ const CreateUpdateUser = ({ label, user, userType, onClose, onRefresh }) => {
             if (res.success){
                 toast.success(res?.message);
                 handleOnClose();
-                onClose?.();
                 await onRefresh?.();
+                onClose?.();
+
             }
         }
         catch (e) {

@@ -44,26 +44,6 @@ const OrderPreviewDialog = ({ open, onClose, order, onRefresh}) => {
                     },
                 );
             }
-            if (order?.status === ORDER_STATUS.APPROVED){
-                ACTIONS.push(
-                    {
-                        label: 'Dispatch Order',
-                        status: ORDER_STATUS.DISPATCHED,
-                        variant: 'contained',
-                        color: 'success'
-                    },
-                );
-            }
-            if (order?.status === ORDER_STATUS.DISPATCHED){
-                ACTIONS.push(
-                    {
-                        label: 'Confirm Delivery',
-                        status: ORDER_STATUS.DELIVERED,
-                        variant: 'contained',
-                        color: 'success'
-                    },
-                );
-            }
             if (order?.status === ORDER_STATUS.DELIVERED){
                 ACTIONS.push(
                     {
@@ -75,6 +55,49 @@ const OrderPreviewDialog = ({ open, onClose, order, onRefresh}) => {
                 );
             }
         }
+        if (user?.userType === USER_TYPES.FINANCE){
+            if (order?.status === ORDER_STATUS.PENDING){
+                ACTIONS.push(
+                    {
+                        label: 'Cancel Order',
+                        status: ORDER_STATUS.CANCELED,
+                        variant: 'outlined',
+                        color: 'error'
+                    },
+                    {
+                        label: 'Approve Order',
+                        status: ORDER_STATUS.APPROVED,
+                        variant: 'contained',
+                        color: 'success'
+                    },
+                );
+            }
+        }
+        if (user?.userType === USER_TYPES.SHIPMENT_MANAGER){
+            if (order?.status === ORDER_STATUS.APPROVED){
+                ACTIONS.push(
+                    {
+                        label: 'Dispatch Order',
+                        status: ORDER_STATUS.DISPATCHED,
+                        variant: 'contained',
+                        color: 'success'
+                    },
+                );
+            }
+        }
+        if (user?.userType === USER_TYPES.DRIVER){
+            if (order?.status === ORDER_STATUS.DISPATCHED){
+                ACTIONS.push(
+                    {
+                        label: 'Confirm Delivery',
+                        status: ORDER_STATUS.DELIVERED,
+                        variant: 'contained',
+                        color: 'success'
+                    },
+                );
+            }
+        }
+
         setActions(ACTIONS)
     }
 
@@ -162,7 +185,7 @@ const OrderPreviewDialog = ({ open, onClose, order, onRefresh}) => {
                         <DownloadReceiptButton
                             order={order}
                         />
-                        <Box>
+                        <Box sx={{ display:'flex', gap:1}}>
                             {actions.map((action) => (
                                 <OrderActionButton
                                     key={action.status}

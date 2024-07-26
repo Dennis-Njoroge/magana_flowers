@@ -9,7 +9,7 @@ class AuthApis{
             axiosInstance.post(APP_API_URL.LOGIN, values).then( response => {
                 resolve(response.data);
             }).catch(e => {
-                if (e.response.status === 400){
+                if (e.response.status === 404 || e.response.status === 400 ){
                     reject(new Error(e.response?.data.message ?? "Invalid credentials"))
                 }
                 else{

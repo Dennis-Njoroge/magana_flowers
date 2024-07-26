@@ -38,9 +38,9 @@ const ProfileCard =() => {
                 </Box>
             </Box>
             <Box>
-                <Button size={'small'} variant={'outlined'} sx={{ color: 'inherit', borderColor: 'inherit'}}>
-                    {'Edit Profile'}
-                </Button>
+                {/*<Button size={'small'} variant={'outlined'} sx={{ color: 'inherit', borderColor: 'inherit'}}>*/}
+                {/*    {'Edit Profile'}*/}
+                {/*</Button>*/}
             </Box>
         </Card>
     )

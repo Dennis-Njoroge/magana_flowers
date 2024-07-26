@@ -124,11 +124,20 @@ export const PATHS = {
 
 export const USER_TYPES = {
     CUSTOMER: 'customer',
-    FINANCE: 'finance manager',
+    FINANCE: 'finance',
     SHIPMENT_MANAGER: 'shipment manager',
     DRIVER: 'driver',
     ADMIN: 'admin'
 }
+
+export const UserTypesOpts = [
+    USER_TYPES.ADMIN,
+    USER_TYPES.CUSTOMER,
+    USER_TYPES.FINANCE,
+    USER_TYPES.SHIPMENT_MANAGER,
+    USER_TYPES.DRIVER
+]
+
 
 export const ROLE_CLAIMS = {
     [USER_TYPES.CUSTOMER] : [
@@ -150,7 +159,19 @@ export const ROLE_CLAIMS = {
     ],
     [USER_TYPES.FINANCE]: [
         PATHS.DASHBOARD,
-        PATHS.ORDER
+        PATHS.ORDER,
+        PATHS.PAYMENTS,
+        PATHS.MY_ACCOUNT
+    ],
+    [USER_TYPES.DRIVER]: [
+        PATHS.DASHBOARD,
+        PATHS.ORDER,
+        PATHS.MY_ACCOUNT
+    ],
+    [USER_TYPES.SHIPMENT_MANAGER]: [
+        PATHS.DASHBOARD,
+        PATHS.ORDER,
+        PATHS.MY_ACCOUNT
     ]
 }
 

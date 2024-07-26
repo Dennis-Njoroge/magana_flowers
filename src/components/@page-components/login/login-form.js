@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 import {sanitizeString} from "@/utils/helper-functions";
 import Collapse from "@mui/material/Collapse";
 import {Logo} from "@/components/logo";
-import DMTPhoneInput from "@/components/@shared-components/forms/phone-input";
 import DMTTextInput from "@/components/@shared-components/forms/text-input";
 import DMTPasswordInput from "@/components/@shared-components/forms/password-input";
 import NextLink from "next/link";
@@ -110,6 +109,13 @@ const LoginForm = props => {
                             helperText={formik.touched.password && formik.errors.password}
                             onChange={handleOnChange}
                         />
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={12} lg={12}>
+                        <NextLink href={'/auth/forgot-password'} passHref>
+                            <Typography component={'span'} variant={'inherit'} fontWeight={'bold'}>
+                                {"Forgot Password?"}
+                            </Typography>
+                        </NextLink>
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} lg={12}>
                         <Button
