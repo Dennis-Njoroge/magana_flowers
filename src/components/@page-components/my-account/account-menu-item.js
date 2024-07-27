@@ -2,7 +2,7 @@ import {alpha, Avatar, Card, Icon, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 
-const AccountMenuItem = ({ item }) => {
+const AccountMenuItem = ({ item, onSelect }) => {
     return (
         <>
             <Card
@@ -32,7 +32,7 @@ const AccountMenuItem = ({ item }) => {
                   </Box>
               </Box>
                 <Box>
-                    <IconButton>
+                    <IconButton onClick={() => onSelect(item)}>
                         <Icon>
                             {"arrow_forward_ios"}
                         </Icon>

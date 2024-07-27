@@ -47,7 +47,7 @@ const handlers = {
     LOGOUT: (state) => ({
         ...state,
         isAuthenticated: false,
-        user: null,
+        // user: null,
     }),
     GET_MENUS: (state, action) => {
         const {isFetchingMenus, userMenus} = action.payload;
@@ -170,18 +170,17 @@ export const AuthProvider = (props) => {
     }
 
     const logout = async () => {
-
         //clear token and refresh token locally
         clearLocally(AUTH_TOKEN_KEY);
         clearLocally(AUTH_REFRESH_TOKEN_KEY);
-
         await dispatch({ type: ActionType.LOGOUT });
-        router
+        await router
             .push({
                 pathname: "/",
                 query: { returnUrl: router.asPath },
             })
             .catch(console.error);
+
     };
 
 

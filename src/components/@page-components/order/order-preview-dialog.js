@@ -182,9 +182,14 @@ const OrderPreviewDialog = ({ open, onClose, order, onRefresh}) => {
                         />
                     </Box>
                     <Box sx={{mt:2, display: 'flex', justifyContent: 'space-between'}}>
-                        <DownloadReceiptButton
-                            order={order}
-                        />
+                        <Box>
+                            {order?.payment_status === 'PAID' && (
+                                <DownloadReceiptButton
+                                    order={order}
+                                />
+                            )}
+                        </Box>
+
                         <Box sx={{ display:'flex', gap:1}}>
                             {actions.map((action) => (
                                 <OrderActionButton

@@ -78,7 +78,7 @@ export const changeResetPasswordHandler = async (req, res) => {
             }
             const isMatch = await bcrypt.compare(req.body.current_password, user.password);
             if (!isMatch) {
-                return res.status(400).json({ message: 'Current password is invalid!' });
+                return res.status(400).json({ error: 'Current password is invalid!' });
             }
         }
 
@@ -89,7 +89,7 @@ export const changeResetPasswordHandler = async (req, res) => {
 
         const updatedUser = await userRepository.updateUser(user.id, { password });
         if (!updatedUser){
-            return res.status(400).json({ user: updatedUser, message: 'An error occurred while updating password.' });
+            return res.status(400).json({ error: 'An error occurred while updating password.' });
         }
 
         res.status(201).json({ success: true, message: 'Password updated successfully', });
@@ -140,7 +140,15 @@ export const loginUser = async (req, res) => {
             })
         }
 
-        const token = jwt.sign({ id: user.id, username: user?.username, userType: user?.user_type}, process.env.NEXT_PUBLIC_JWT_SECRET, { expiresIn: '1h' });
+        const jwtPayload = {
+            id: user.id,
+            username: user?.username,
+            userType: user?.user_type,
+            email: user?.email,
+            phoneNumber: user?.phone_no
+        }
+
+        const token = jwt.sign( jwtPayload, process.env.NEXT_PUBLIC_JWT_SECRET, { expiresIn: '1h' });
 
         res.status(200).json({ success: true, message: 'Login successful', token });
     } catch (error) {
