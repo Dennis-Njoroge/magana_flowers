@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
 import {LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
-import '@/theme/main.css';
+// import '@/theme/main.css';
 
 const clientSideEmotionCache = createEmotionCache();
 export default function App({ Component, pageProps }) {

@@ -1,6 +1,12 @@
 import { Op } from 'sequelize';
 import {createProductHandler, getAllProductsHandler, searchProductsHandler} from "@/controllers/ProductController";
-
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '50mb' // Set desired value here
+        }
+    }
+}
 export default async (req, res) => {
     switch (req.method) {
         case 'GET':

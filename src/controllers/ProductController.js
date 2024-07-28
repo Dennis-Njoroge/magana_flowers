@@ -4,7 +4,7 @@ import * as productRepository from '@/repositories/ProductRepository';
 export const createProductHandler = async (req, res) => {
     try {
         const product = await productRepository.createProduct(req.body);
-        res.status(201).json(product);
+        res.status(201).json({ success: true, message: 'Product created successfully!', product});
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -23,7 +23,7 @@ export const getProductByIdHandler = async (req, res) => {
     try {
         const product = await productRepository.getProductById(req.query.id);
         if (product) {
-            res.status(200).json(product);
+            res.status(200).json( product);
         } else {
             res.status(404).json({ error: 'Product not found' });
         }
@@ -36,7 +36,7 @@ export const updateProductHandler = async (req, res) => {
     try {
         const product = await productRepository.updateProduct(req.query.id, req.body);
         if (product) {
-            res.status(200).json(product);
+            res.status(200).json({ success: true, message: 'Product updated successfully!', product});
         } else {
             res.status(404).json({ error: 'Product not found' });
         }

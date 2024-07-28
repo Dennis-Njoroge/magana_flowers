@@ -64,6 +64,12 @@ export const userMenus = [
         "pageIcon": "local_mall"
     },
     {
+        "pageName": "Products",
+        "route": "/dashboard/products",
+        "enabled": true,
+        "pageIcon": "inventory_2"
+    },
+    {
         "pageName": "Customers",
         "route": "/dashboard/customers",
         "enabled": true,
@@ -127,7 +133,8 @@ export const USER_TYPES = {
     FINANCE: 'finance',
     SHIPMENT_MANAGER: 'shipment manager',
     DRIVER: 'driver',
-    ADMIN: 'admin'
+    ADMIN: 'admin',
+    STORE_MANAGER: 'store manager'
 }
 
 export const UserTypesOpts = [
@@ -135,7 +142,8 @@ export const UserTypesOpts = [
     USER_TYPES.CUSTOMER,
     USER_TYPES.FINANCE,
     USER_TYPES.SHIPMENT_MANAGER,
-    USER_TYPES.DRIVER
+    USER_TYPES.DRIVER,
+    USER_TYPES.STORE_MANAGER
 ]
 
 
@@ -161,6 +169,11 @@ export const ROLE_CLAIMS = {
         PATHS.DASHBOARD,
         PATHS.ORDER,
         PATHS.PAYMENTS,
+        PATHS.MY_ACCOUNT
+    ],
+    [USER_TYPES.STORE_MANAGER]: [
+        PATHS.DASHBOARD,
+        PATHS.PRODUCTS,
         PATHS.MY_ACCOUNT
     ],
     [USER_TYPES.DRIVER]: [

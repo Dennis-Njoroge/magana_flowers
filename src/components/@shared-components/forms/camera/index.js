@@ -33,11 +33,7 @@ const DMTCatureImage = props => {
             await fileToBase64(file)
                 .then(data => {
                     setPhotoURL(data);
-                    onChange({
-                        name: file.name,
-                        extension: fileExtension,
-                        data: data
-                    })
+                    onChange(data)
                 })
                 .catch(err => {
                     console.log(err);
@@ -56,7 +52,7 @@ const DMTCatureImage = props => {
     };
 
     useEffect(() => {
-        setPhotoURL(value?.data ?? null);
+        setPhotoURL(value ?? null);
     },[value]);
 
 
@@ -67,13 +63,13 @@ const DMTCatureImage = props => {
             variant="standard"
             required={required}
         >
-            <Grid container spacing={2} alignItems={'center'}>
-                <Grid item xs={12} sm={12} md={3.5}>
+            <Grid container spacing={3} alignItems={'center'}>
+                <Grid item xs={12} sm={12} md={12}>
                     <InputLabel id={name} shrink htmlFor={name} name={name} required={required} error={error} >
                         {label}
                     </InputLabel>
                 </Grid>
-                <Grid item xs={12} sm={12} md={8.5}>
+                <Grid item xs={12} sm={12} md={12}>
                     <input
                         id={name}
                         type="file"
@@ -99,7 +95,7 @@ const DMTCatureImage = props => {
                         <Box sx={{ display: 'flex', gap: 1, mb:2}}>
                             <Button size={'small'} startIcon={<Icon>camera</Icon>} variant={'outlined'} color={'primary'} onClick={triggerCamera}>{placeholder}</Button>
                         </Box>
-                        {(photoURL && !error) && <Image src={photoURL} width={200} height={250} alt="Captured" />}
+                        {(photoURL) && <Image src={photoURL} width={200} height={250} alt="Captured" />}
                         {helperText && (
                             <Typography color={error ? 'error' : 'text.primary'} variant={'caption'}>
                                 {helperText}

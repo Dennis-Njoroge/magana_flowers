@@ -22,7 +22,21 @@ class ProductsApis{
                 resolve(response.data);
             }).catch(e => {
                 if (e.response.status === 400){
-                    reject(new Error(e.response?.data.message ?? "Invalid credentials"))
+                    reject(new Error(e.response?.data?.message))
+                }
+                else{
+                    reject(new Error(e.message))
+                }
+            })
+        })
+    };
+    async updateProduct (values) {
+        return new Promise(async (resolve, reject) => {
+            axiosInstance.put(`${APP_API_URL.PRODUCTS}/${values.id}`, values).then( response => {
+                resolve(response.data);
+            }).catch(e => {
+                if (e.response.status === 400){
+                    reject(new Error(e.response?.data?.message))
                 }
                 else{
                     reject(new Error(e.message))

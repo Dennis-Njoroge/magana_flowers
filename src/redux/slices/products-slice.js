@@ -1,7 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {productsApis} from "@/services/products";
 import {setIsLoading} from "@/redux/slices/loading";
-import {getAutoCompleteValue} from "@/utils/helper-functions";
 import {categoriesApis} from "@/services/categories";
 
 const initialState = {

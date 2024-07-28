@@ -36,12 +36,6 @@ const OrderPreviewDialog = ({ open, onClose, order, onRefresh}) => {
                         variant: 'outlined',
                         color: 'error'
                     },
-                    {
-                        label: 'Approve Order',
-                        status: ORDER_STATUS.APPROVED,
-                        variant: 'contained',
-                        color: 'success'
-                    },
                 );
             }
             if (order?.status === ORDER_STATUS.DELIVERED){
@@ -183,7 +177,7 @@ const OrderPreviewDialog = ({ open, onClose, order, onRefresh}) => {
                     </Box>
                     <Box sx={{mt:2, display: 'flex', justifyContent: 'space-between'}}>
                         <Box>
-                            {order?.payment_status === 'PAID' && (
+                            {(order?.payment_status === 'PAID' && order?.status !== 'Pending') && (
                                 <DownloadReceiptButton
                                     order={order}
                                 />
