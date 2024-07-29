@@ -1,7 +1,5 @@
 import sequalize from "@/config/database";
 import {DataTypes} from "sequelize";
-import Category from "@/models/Category";
-import {discountedPrice} from "@/utils/helper-functions";
 import Product from "@/models/Product";
 import User from "@/models/User";
 

@@ -36,7 +36,7 @@ const OrderItem = ({ order, onRefresh }) => {
                         {order?.order_no}
                     </Typography>
                     <Typography variant={'caption'}>
-                        {formatDate(order?.order_date, 'DD/MM/YYYY HH:ss a')}
+                        {formatDate(order?.order_date, 'DD/MM/YYYY HH:mm a')}
                     </Typography>
                 </Box>
                 <Divider sx={{ my:1 }}/>
