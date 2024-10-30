@@ -2,12 +2,13 @@ import {useState} from "react";
 import Button from "@mui/material/Button";
 import DMTDialog from "@/components/@shared-components/dialog";
 import {
+    Collapse,
     DialogContent,
-    DialogTitle, Divider,
+    DialogTitle, Divider, FormControlLabel,
     Step,
     StepContent,
     StepLabel,
-    Stepper,
+    Stepper, Switch,
     Typography,
     useMediaQuery
 } from "@mui/material";
@@ -52,6 +53,7 @@ const Checkout = ({ cartProducts, totalAmount }) => {
             fullName: user?.username ?? '',
             transactionCode: '',
             phoneNumber: user?.phoneNumber ?? '',
+            withShipping: false,
             location: null,
             shippingFee: '',
         },
@@ -91,15 +93,18 @@ const Checkout = ({ cartProducts, totalAmount }) => {
                     price: cartProduct?.Product?.discounted_price,
                     specifications: cartProduct?.specifications,
                 }
-            })
+            });
+
+            const shipmentFee = values.withShipping ? Number(values.shippingFee):  0;
+
             const formData = {
                 user_id: user?.id,
                 full_name: values?.fullName,
+                location: values.withShipping ? values.location:  'No Shipment',
+                shipment_fee:shipmentFee,
                 phone_no: values?.phoneNumber,
-                location: values?.location,
-                shipment_fee: Number(values?.shippingFee),
                 products: products,
-                total_amount: Number(totalAmount) + Number(values?.shippingFee)
+                total_amount: Number(totalAmount) + shipmentFee
             };
             const res = await orderApis.createOrder(formData);
             if (res?.success){
@@ -180,28 +185,48 @@ const Checkout = ({ cartProducts, totalAmount }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12}>
-                                    <DMTPickUpPoint
-                                        value={formik.values.location}
-                                        onChange={handleOnLocationChange}
-                                        required={true}
-                                        fullWidth={true}
-                                        label={'Select Pick-Up Point'}
-                                        onBlur={formik.handleBlur}
-                                        name={'location'}
-                                        error={Boolean(formik.touched.location && formik.errors.location)}
-                                        helperText={formik.touched.location && formik.errors.location}
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                checked={formik.values.withShipping}
+                                                onChange={e => formik.setFieldValue(e.target.name,e.target.checked)}
+                                                name="withShipping"
+                                            />
+                                        }
+                                        label="Include Shipment"
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12}>
-                                    <DMTCurrencyInput
-                                        label={'Shipping Fee'}
-                                        value={formik.values.shippingFee}
-                                        disabled={true}
-                                        onChange={formik.handleChange}
-                                        name={'shippingFee'}
-                                        error={Boolean(formik.touched.shippingFee && formik.errors.shippingFee)}
-                                        helperText={formik.touched.shippingFee && formik.errors.shippingFee}
-                                    />
+                                    <Collapse in={Boolean(formik.values.withShipping)}>
+                                        {Boolean(formik.values.withShipping) && (
+                                            <DMTPickUpPoint
+                                                value={formik.values.location}
+                                                onChange={handleOnLocationChange}
+                                                required={true}
+                                                fullWidth={true}
+                                                label={'Select Pick-Up Point'}
+                                                onBlur={formik.handleBlur}
+                                                name={'location'}
+                                                error={Boolean(formik.touched.location && formik.errors.location)}
+                                                helperText={formik.touched.location && formik.errors.location}
+                                            />
+                                        )}
+                                    </Collapse>
+                                </Grid>
+                                <Grid item xs={12} sm={12} md={12}>
+                                    <Collapse in={Boolean(formik.values.withShipping)}>
+                                        {Boolean(formik.values.withShipping) && (
+                                            <DMTCurrencyInput
+                                                label={'Shipping Fee'}
+                                                value={formik.values.shippingFee}
+                                                disabled={true}
+                                                onChange={formik.handleChange}
+                                                name={'shippingFee'}
+                                                error={Boolean(formik.touched.shippingFee && formik.errors.shippingFee)}
+                                                helperText={formik.touched.shippingFee && formik.errors.shippingFee}
+                                            />
+                                        )}
+                                    </Collapse>
                                 </Grid>
                             </Grid>
                             <Box sx={{ display: 'flex', mt:2, gap:2, justifyContent: 'flex-end'}}>
