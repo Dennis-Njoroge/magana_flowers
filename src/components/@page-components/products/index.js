@@ -7,10 +7,12 @@ import ProductCategories from "@/components/@page-components/dashboard/product-c
 import UpdateProductItem from "@/components/@page-components/products/update-product-item";
 import CreateUpdateProduct from "@/components/@page-components/products/create-update-product";
 import Box from "@mui/material/Box";
+import {Typography} from "@mui/material";
 
 const Products = () => {
     const dispatch = useDispatch();
     const { products } = useSelector(( { products }) => products);
+    const { isLoading } = useSelector(( { loading }) => loading);
     const router = useRouter();
     const filters = router.query;
     const getDiscountedProducts = async (filters) => {
@@ -35,15 +37,29 @@ const Products = () => {
                 <Grid item xs={12} sm={12} md={12}>
                     <ProductCategories/>
                 </Grid>
-                {products.map((prod)=> (
+                {isLoading && (
+                        <Grid item xs={12} sm={12} md={12}>
+                            <Typography>
+                                {"Loading Products..."}
+                            </Typography>
+                        </Grid>
+                    )
+                }
+                {products.length > 0 ? products.map((prod)=> (
                     <Grid key={prod.prod_id}  item xs={12} sm={12} md={6}>
                         <UpdateProductItem
                             product={prod}
                             onRefresh={() =>  getDiscountedProducts(filters)}
                         />
                     </Grid>
-                ))}
-
+                )): (
+                    <Grid item xs={12} sm={12} md={12}>
+                        <Typography>
+                            {"No products found."}
+                        </Typography>
+                    </Grid>
+                )
+                }
             </Grid>
         </>
     )

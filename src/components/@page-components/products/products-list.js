@@ -1,6 +1,7 @@
 import {useSelector} from "react-redux";
 import ProductItem from "@/components/@page-components/products/product-item";
-import {ImageList, useMediaQuery} from "@mui/material";
+import {ImageList, Typography, useMediaQuery} from "@mui/material";
+import Grid from "@mui/material/Grid";
 
 const ProductsList = ({ products }) => {
     const { isLoading } = useSelector(({ loading }) => loading);
@@ -9,11 +10,26 @@ const ProductsList = ({ products }) => {
     });
     return (
         <>
-            <ImageList sx={{ width: '100%', height: 'auto' }} cols={lgUp ? 3 : 1} gap={20}>
-                {products.map((product) => (
-                    <ProductItem key={product.id} product={product}/>
-                ))}
-            </ImageList>
+            {isLoading && (
+                <Typography>
+                    {"Loading Products..."}
+                </Typography>
+            )
+            }
+            {
+                products.length > 0 ? (
+                    <ImageList sx={{ width: '100%', height: 'auto' }} cols={lgUp ? 3 : 1} gap={20}>
+                        {products.map((product) => (
+                            <ProductItem key={product.id} product={product}/>
+                        ))}
+                    </ImageList>
+                ): (
+                   <Typography>
+                       {'No Product(s) found!'}
+                   </Typography>
+                )
+            }
+
         </>
     )
 }

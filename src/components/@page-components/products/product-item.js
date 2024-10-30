@@ -52,9 +52,12 @@ const ProductItem = ({product}) => {
                     src={`${product.image}`}
                     alt={product.prod_name}
                     loading="lazy"
-                    width={270}
-                    height={200}
-                    //layout="responsive"
+                    width={2}
+                    height={1}
+                    layout="responsive"
+                    style={{
+                        maxHeight: '200px'
+                    }}
                 />
                 <ImageListItemBar
                     title={product.prod_name}

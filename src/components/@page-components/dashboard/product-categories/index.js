@@ -1,14 +1,18 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {getCategories} from "@/redux/slices/products-slice";
 import DMTChip from "@/components/@shared-components/chip";
-import {Box, Typography} from "@mui/material";
+import {Box, Icon, Typography} from "@mui/material";
 import {useRouter} from "next/router";
+import DMTTextInput from "@/components/@shared-components/forms/text-input";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
 
 const ProductCategories = () => {
     const { categories } = useSelector(({ products }) => products);
     const dispatch = useDispatch();
     const router = useRouter();
+    const [query, setQuery] = useState('');
 
     const handleOnClick = (value) => {
         router.push({
@@ -17,16 +21,16 @@ const ProductCategories = () => {
         });
     }
 
-    const handleOnSearch = e => {
-        const { value } = e.target;
-        router.push({
+    const handleOnSearch = async () => {
+        await router.push({
             pathname: router.pathname,
-            query: { ...router.query, q: value },
+            query: { ...router.query, q: query },
         });
     }
 
     useEffect(() => {
         dispatch(getCategories());
+        setQuery(router?.query?.q ?? '')
     },[]);
 
     return (
@@ -61,7 +65,26 @@ const ProductCategories = () => {
                         }
                     )}
                 </Box>
-
+                <Box component={'form'} onSubmit={e=> { e.preventDefault(); handleOnSearch()}}>
+                    <DMTTextInput
+                        label={''}
+                        placeholder={'Search...'}
+                        onChange={e => setQuery(e.target.value)}
+                        onBlur={handleOnSearch}
+                        value={query}
+                        fullWidth={true}
+                        InputProps={{
+                            endAdornment:
+                                <InputAdornment position="end">
+                                    <IconButton type={'submit'}>
+                                        <Icon>
+                                            {"search"}
+                                        </Icon>
+                                    </IconButton>
+                                </InputAdornment>
+                        }}
+                    />
+                </Box>
 
             </Box>
 
