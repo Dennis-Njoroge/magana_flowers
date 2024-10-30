@@ -9,6 +9,7 @@ import {formatCurrency} from "@/utils/helper-functions";
 import {orderApis} from "@/services/order";
 import {useRouter} from "next/router";
 import {toast} from "react-toastify";
+import * as Yup from "yup";
 
 
 const PaymentForm = ({ orderDetails, onClose }) => {
@@ -17,6 +18,11 @@ const PaymentForm = ({ orderDetails, onClose }) => {
         initialValues: {
             transactionCode: ""
         },
+        validationSchema: Yup.object({
+            transactionCode: Yup.string().required('Transaction Code is required!')
+                .min(10, 'Transaction code should be 10 characters long')
+                .max(10, "Transaction code should not exceed 10 characters")
+        }),
         onSubmit: async values => {
             try{
                 const formData = {

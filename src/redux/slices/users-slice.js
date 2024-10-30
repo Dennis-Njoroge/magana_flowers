@@ -9,6 +9,7 @@ const initialState = {
     users: [],
     customers: [],
     employees: [],
+    suppliers: [],
 }
 
 const Users = createSlice({
@@ -27,6 +28,9 @@ const Users = createSlice({
         setEmployees: (state, action) => {
             state.employees = action.payload;
         },
+        setSuppliers: (state, action) => {
+            state.suppliers = action.payload;
+        },
     }
 });
 
@@ -35,6 +39,7 @@ export const {
     setUsers,
     setCustomers,
     setEmployees,
+    setSuppliers
 } = Users.actions;
 
 export const getDrivers = () => async dispatch => {
@@ -56,9 +61,11 @@ export const getUsers = () => async dispatch => {
         const filters = {}
         const res = await usersApis.fetchUsers(filters);
         const customers = res?.filter(user => user.user_type === USER_TYPES.CUSTOMER);
-        const employees = res?.filter(user => user.user_type !== USER_TYPES.CUSTOMER);
+        const employees = res?.filter(user => user.user_type !== USER_TYPES.CUSTOMER ||  user.user_type !== USER_TYPES.SUPPLIER );
+        const suppliers = res?.filter(user => user.user_type === USER_TYPES.SUPPLIER);
         dispatch(setCustomers(customers))
         dispatch(setEmployees(employees))
+        dispatch(setSuppliers(suppliers))
         dispatch(setUsers(res));
 
     }

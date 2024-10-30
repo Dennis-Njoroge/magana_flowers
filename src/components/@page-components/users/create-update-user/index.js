@@ -20,7 +20,7 @@ const CreateUpdateUser = ({ label, user, userType, onClose, onRefresh }) => {
     const handleOnSave = async values => {
         try{
             let res;
-            const formData = {
+            let formData = {
                 id: user?.id ?? null,
                 first_name: values.firstName,
                 last_name: values.lastName,
@@ -29,12 +29,16 @@ const CreateUpdateUser = ({ label, user, userType, onClose, onRefresh }) => {
                 user_type: values.userType,
                 status: 'active',
                 email: values.email,
-                password: user? values.password : null
             }
+
             if (user){
                 res = await usersApis.updateUser(formData)
             }
             else{
+                formData = {
+                    ...formData,
+                    password: values.password
+                }
                 res = await usersApis.addUser(formData);
             }
 

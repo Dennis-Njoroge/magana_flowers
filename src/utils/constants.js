@@ -82,6 +82,12 @@ export const userMenus = [
         "pageIcon": "engineering"
     },
     {
+        "pageName": "Suppliers",
+        "route": "/dashboard/suppliers",
+        "enabled": true,
+        "pageIcon": "people"
+    },
+    {
         "pageName": "Users Accounts",
         "route": "/dashboard/users",
         "enabled": true,
@@ -126,10 +132,12 @@ export const PATHS = {
     USERS: '/dashboard/users',
     CUSTOMERS: '/dashboard/customers',
     EMPLOYEES: '/dashboard/employees',
+    SUPPLIER: '/dashboard/suppliers',
 }
 
 export const USER_TYPES = {
     CUSTOMER: 'customer',
+    SUPPLIER: 'supplier',
     FINANCE: 'finance',
     SHIPMENT_MANAGER: 'shipment manager',
     DRIVER: 'driver',
@@ -143,7 +151,8 @@ export const UserTypesOpts = [
     USER_TYPES.FINANCE,
     USER_TYPES.SHIPMENT_MANAGER,
     USER_TYPES.DRIVER,
-    USER_TYPES.STORE_MANAGER
+    USER_TYPES.STORE_MANAGER,
+    USER_TYPES.SUPPLIER
 ]
 
 
@@ -163,6 +172,7 @@ export const ROLE_CLAIMS = {
         PATHS.ORDER,
         PATHS.CUSTOMERS,
         PATHS.EMPLOYEES,
+        PATHS.SUPPLIER,
         PATHS.MY_ACCOUNT
     ],
     [USER_TYPES.FINANCE]: [
