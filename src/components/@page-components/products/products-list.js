@@ -1,7 +1,6 @@
 import {useSelector} from "react-redux";
 import ProductItem from "@/components/@page-components/products/product-item";
 import {ImageList, Typography, useMediaQuery} from "@mui/material";
-import Grid from "@mui/material/Grid";
 
 const ProductsList = ({ products }) => {
     const { isLoading } = useSelector(({ loading }) => loading);

@@ -10,6 +10,7 @@ import Users from "@/components/@page-components/users";
 import {Typography} from "@mui/material";
 import AdminDashboard from "@/components/@page-components/dashboard/admin-dashboard";
 import Order from "@/components/@page-components/order";
+import Purchase from "@/components/@page-components/purchases";
 
 const Dashboard = () => {
     const { user } = useAuth();
@@ -35,9 +36,19 @@ const Dashboard = () => {
                                     </Grid>
                                 </>
                             ): (
-                                <Grid item xs={12} md={12} sm={12}>
-                                    <Order fixed={false}/>
-                                </Grid>
+                                <>
+                                    {
+                                        user?.userType === USER_TYPES.SUPPLIER ? (
+                                            <Grid item xs={12} md={12} sm={12}>
+                                                <Purchase fixed={false}/>
+                                            </Grid>
+                                        ): (
+                                            <Grid item xs={12} md={12} sm={12}>
+                                                <Order fixed={false}/>
+                                            </Grid>
+                                        )
+                                    }
+                                </>
                             )}
                         </Grid>
                     </Grid>

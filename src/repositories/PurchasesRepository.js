@@ -1,7 +1,7 @@
 import User from "@/models/User";
 import Product from "@/models/Product";
 import  {Op} from "sequelize";
-import {ORDER_STATUS, PURCHASE_PREFIX, PURCHASE_STATUS} from "@/utils/constants";
+import {PURCHASE_PREFIX, PURCHASE_STATUS} from "@/utils/constants";
 import * as path from "path";
 import PDFDocument from "pdfkit";
 import * as fs from "fs";
@@ -64,7 +64,7 @@ const addProductQuantity = async (purchase) => {
     try {
         const product = await Product.findByPk(purchase.prod_id);
         if (product) {
-            product.qty += purchase.available_qty;
+            product.qty += purchase.original_qty;
             await product.save();
         }
     } catch (error) {

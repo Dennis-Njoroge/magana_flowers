@@ -88,6 +88,7 @@ export const userMenus = [
         "enabled": true,
         "pageIcon": "people"
     },
+
     {
         "pageName": "Users Accounts",
         "route": "/dashboard/users",
@@ -104,6 +105,12 @@ export const userMenus = [
     {
         "pageName": "Orders",
         "route": "/dashboard/orders",
+        "enabled": true,
+        "pageIcon": "list_alt"
+    },
+    {
+        "pageName": "Purchases",
+        "route": "/dashboard/purchases",
         "enabled": true,
         "pageIcon": "list_alt"
     },
@@ -134,6 +141,7 @@ export const PATHS = {
     CUSTOMERS: '/dashboard/customers',
     EMPLOYEES: '/dashboard/employees',
     SUPPLIER: '/dashboard/suppliers',
+    PURCHASES: '/dashboard/purchases',
 }
 
 export const USER_TYPES = {
@@ -174,17 +182,20 @@ export const ROLE_CLAIMS = {
         PATHS.CUSTOMERS,
         PATHS.EMPLOYEES,
         PATHS.SUPPLIER,
+        PATHS.PURCHASES,
         PATHS.MY_ACCOUNT
     ],
     [USER_TYPES.FINANCE]: [
         PATHS.DASHBOARD,
         PATHS.ORDER,
         PATHS.PAYMENTS,
+        PATHS.PURCHASES,
         PATHS.MY_ACCOUNT
     ],
     [USER_TYPES.STORE_MANAGER]: [
         PATHS.DASHBOARD,
         PATHS.PRODUCTS,
+        PATHS.PURCHASES,
         PATHS.MY_ACCOUNT
     ],
     [USER_TYPES.DRIVER]: [
@@ -195,6 +206,11 @@ export const ROLE_CLAIMS = {
     [USER_TYPES.SHIPMENT_MANAGER]: [
         PATHS.DASHBOARD,
         PATHS.ORDER,
+        PATHS.MY_ACCOUNT
+    ],
+    [USER_TYPES.SUPPLIER]: [
+        PATHS.DASHBOARD,
+        PATHS.PURCHASES,
         PATHS.MY_ACCOUNT
     ]
 }
@@ -213,7 +229,7 @@ export const PURCHASE_STATUS = {
     APPROVED: 'APPROVED',
     DELIVERED: 'DELIVERED',
     COMPLETED: 'COMPLETED',
-    CANCELED: 'CANCELLED',
+    CANCELED: 'CANCELED',
 }
 
 

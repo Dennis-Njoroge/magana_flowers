@@ -1,7 +1,7 @@
 //removes tags from string
 import moment from "moment";
 import CurrencyFormat from "react-currency-format";
-import {ORDER_STATUS, PREFIX, ROLE_CLAIMS} from "@/utils/constants";
+import {ORDER_STATUS, PREFIX, PURCHASE_STATUS, ROLE_CLAIMS} from "@/utils/constants";
 
 
 export const sanitizeString = string => {
@@ -195,6 +195,24 @@ export const orderStatusColor = (status) => {
         color = 'warning'
     }
     else if(status === ORDER_STATUS.CANCELED){
+        color = 'error'
+    }
+    else{
+        color = 'success'
+    }
+
+    return color;
+}
+
+export const purchaseStatusColor = (status) => {
+    if (!status){
+        return;
+    }
+    let color;
+    if (status === PURCHASE_STATUS.PENDING){
+        color = 'warning'
+    }
+    else if(status === PURCHASE_STATUS.CANCELED){
         color = 'error'
     }
     else{

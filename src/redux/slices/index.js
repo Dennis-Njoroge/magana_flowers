@@ -5,6 +5,7 @@ import cartSlice from "@/redux/slices/cart-slice";
 import orderSlice from "@/redux/slices/order-slice";
 import pickupPointSlice from "@/redux/slices/pickup-ponts-slice";
 import usersSlice from "@/redux/slices/users-slice";
+import purchasesSlice from "@/redux/slices/purchases-slice";
 
 const reducers = {
     claims: ClaimsSlice,
@@ -12,6 +13,7 @@ const reducers = {
     products:  ProductsSlice,
     cart: cartSlice,
     order: orderSlice,
+    purchases: purchasesSlice,
     pickupPoint: pickupPointSlice,
     users: usersSlice
 }

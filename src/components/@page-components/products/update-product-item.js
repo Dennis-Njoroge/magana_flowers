@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import CreateUpdateProduct from "@/components/@page-components/products/create-update-product";
 import {formatCurrency} from "@/utils/helper-functions";
+import StockIn from "@/components/@page-components/purchases/stock-in";
 
 const UpdateProductItem = ({ product, onRefresh }) => {
     const formattedPrice = () => {
@@ -35,6 +36,9 @@ const UpdateProductItem = ({ product, onRefresh }) => {
                 <CreateUpdateProduct
                     product={product}
                     onRefresh={onRefresh}
+                />
+                <StockIn
+                    product={product}
                 />
             </Grid>
         </Grid>

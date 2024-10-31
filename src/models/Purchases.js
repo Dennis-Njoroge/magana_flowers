@@ -67,7 +67,7 @@ const Purchases = sequelize.define(modelName, {
     payment_status: {
         type: DataTypes.VIRTUAL,
         get() {
-            return this.payment_code !== null ? 'PAID' : 'PENDING';
+            return this.payment_code !== null ? 'PAID' : 'UNPAID';
         }
     },
     create_on: {

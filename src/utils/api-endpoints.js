@@ -40,6 +40,7 @@ export const APP_API_URL = {
     ORDER: '/api/order',
     PICK_UP_POINT: '/api/pick-up-point',
     USERS: '/api/users',
+    PURCHASES: '/api/purchases',
 
     /***************** CLAIM APIS **********************/
     MAKE_CLAIM: '/api/claims/make-claim',
