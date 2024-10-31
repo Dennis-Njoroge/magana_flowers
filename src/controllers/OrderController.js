@@ -40,43 +40,12 @@ export const updateOrderStatusHandler = async (req, res) => {
 export const generateReceiptHandler = async (req, res) => {
     try{
         return await generateReceipt(req, res);
-        // if (receipt){
-        //     res.status(200).json(receipt);
-        // }
-        // else{
-        //     res.status(404).json({ error: 'Order not found' });
-        // }
     }
     catch (error) {
         res.status(500).json({ error: error.message });
     }
 }
 
-// export const deleteCartHandler = async (req, res) => {
-//     try {
-//         const success = await orderRepository.deleteCart(req.query.id, null);
-//         if (success) {
-//             res.status(204).end();
-//         } else {
-//             res.status(404).json({ error: 'Cart not found' });
-//         }
-//     } catch (error) {
-//         res.status(500).json({ error: error.message });
-//     }
-// };
-//
-// export const deleteCartByUserIdHandler = async (req, res) => {
-//     try {
-//         const success = await orderRepository.deleteCart(null, req.query?.userId);
-//         if (success) {
-//             res.status(204).end();
-//         } else {
-//             res.status(404).json({ error: 'No Items found' });
-//         }
-//     } catch (error) {
-//         res.status(500).json({ error: error.message });
-//     }
-// };
 
 
 

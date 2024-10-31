@@ -28,6 +28,7 @@ export const APP_NAME = "Magana Flowers Portal";
 export const AUTH_TOKEN_KEY = 'accessToken';
 export const AUTH_REFRESH_TOKEN_KEY = 'refreshToken';
 export const PREFIX  = 'MFL';
+export const PURCHASE_PREFIX  = 'MFP';
 
 export const claimsTypes = {
     DAMAGE: {
@@ -205,6 +206,14 @@ export const ORDER_STATUS = {
     DELIVERED: 'Delivered',
     COMPLETED: 'Completed',
     CANCELED: 'Cancelled',
+}
+
+export const PURCHASE_STATUS = {
+    PENDING: 'PENDING',
+    APPROVED: 'APPROVED',
+    DELIVERED: 'DELIVERED',
+    COMPLETED: 'COMPLETED',
+    CANCELED: 'CANCELLED',
 }
 
 

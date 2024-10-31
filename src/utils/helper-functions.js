@@ -180,10 +180,10 @@ export const computeGrandTotal = (items) => {
     return total;
 }
 
-export const generateOrderNumber = () => {
+export const generateOrderNumber = (prefix = PREFIX ) => {
     const randomNum = Math.floor(1000 + Math.random() * 9000); // Random 4-digit number
     const year = new Date().getFullYear();
-    return `${PREFIX}/${randomNum}/${year}`;
+    return `${prefix}/${randomNum}/${year}`;
 };
 
 export const orderStatusColor = (status) => {
