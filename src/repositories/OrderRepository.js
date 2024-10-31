@@ -10,6 +10,7 @@ import * as path from "path";
 import PDFDocument from "pdfkit";
 import * as fs from "fs";
 import {createReceipt} from "@/utils/receipt-template";
+import {storage} from "@/lib/firebaseAdmin";
 
 const  {Order, OrderDetails, ShippingDetails} = models;
 
@@ -203,33 +204,79 @@ const fetchOrderDetails = async (orderId) => {
 };
 
 
+// export const generateReceipt = async (req, res) => {
+//     const order = await fetchOrderDetails(req?.query?.id);
+//     if (!order) {
+//         throw new Error('Order not found');
+//     }
+//
+//     // Create a document
+//     const doc = new PDFDocument({ size: "A4", margin: 50 });
+//
+//     // Pipe the document to a blob
+//     const fileName = `receipt-${order.id}.pdf`;
+//     const filePath = path.join(process.cwd(), 'public', 'receipts', fileName);
+//     doc.pipe(fs.createWriteStream(filePath));
+//
+//     const logoPath = path.join(process.cwd(), 'public/static', 'logo.png');
+//
+//     //creates a receipt
+//     createReceipt(doc, logoPath, order)
+//
+//     // Finalize the PDF and end the stream
+//     await doc.end();
+//
+//     const origin = req.headers.origin || process.env.NEXT_PUBLIC_BASE_URL;
+//     await doc.on('end', () => {
+//         res.status(200).json({success: true, fileUrl: `${origin}/receipts/${fileName}`, fileName });
+//     });
+//
+// };
+
 export const generateReceipt = async (req, res) => {
+
     const order = await fetchOrderDetails(req?.query?.id);
     if (!order) {
-        throw new Error('Order not found');
+        throw new Error("Order not found");
     }
 
-    // Create a document
+    // Create a PDF document
     const doc = new PDFDocument({ size: "A4", margin: 50 });
-
-    // Pipe the document to a blob
     const fileName = `receipt-${order.id}.pdf`;
-    const filePath = path.join(process.cwd(), 'public', 'receipts', fileName);
-    doc.pipe(fs.createWriteStream(filePath));
+    const tempFilePath = path.join(process.cwd(), "public", "receipts", fileName);
 
-    const logoPath = path.join(process.cwd(), 'public/static', 'logo.png');
+    // Create the PDF and write to a temporary file
+    const writeStream = fs.createWriteStream(tempFilePath);
+    doc.pipe(writeStream);
 
-    //creates a receipt
-    createReceipt(doc, logoPath, order)
+    const logoPath = path.join(process.cwd(), "public/static", "logo.png");
 
-    // Finalize the PDF and end the stream
-    await doc.end();
+    // Create the receipt content
+    createReceipt(doc, logoPath, order);
 
-    const origin = req.headers.origin || process.env.NEXT_PUBLIC_BASE_URL;
-    await doc.on('end', () => {
-        res.status(200).json({success: true, fileUrl: `${origin}/receipts/${fileName}`, fileName });
+    // Finalize the PDF and upload to Firebase
+    doc.end();
+
+    // Upload to Firebase Storage after PDF generation
+    writeStream.on("finish", async () => {
+        const bucket = storage.bucket(process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET);
+        const destination = `receipts/${fileName}`;
+        await bucket.upload(tempFilePath, {
+            destination: destination,
+            contentType: "application/pdf",
+        });
+
+        // Generate a signed URL for temporary access
+        const [url] = await bucket.file(destination).getSignedUrl({
+            action: "read",
+            expires: "03-01-2030", // Set your expiration date here
+        });
+
+        // Clean up the temporary file
+        fs.unlinkSync(tempFilePath);
+
+        res.status(200).json({ success: true, fileUrl: url, fileName });
     });
-
 };
 
 //functions
