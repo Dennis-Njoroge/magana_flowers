@@ -70,6 +70,12 @@ const PurchasePreviewDialog = ({ open, onClose, purchase, onRefresh}) => {
                         variant: 'contained',
                         color: 'success'
                     },
+                    {
+                        label: 'Decline Purchase',
+                        status: PURCHASE_STATUS.CANCELED,
+                        variant: 'outlined',
+                        color: 'error'
+                    },
                 );
             }
         }
@@ -187,7 +193,7 @@ const PurchaseDetailsItem = ({ purchaseDetail }) => {
                             {purchaseDetail?.Product?.prod_name}
                         </Typography>
                         <Typography variant={'caption'}>
-                            {`X ${purchaseDetail?.original_qty} @`}
+                            {`X ${purchaseDetail?.available_qty} @`}
                             {formattedPrice()}
                         </Typography>
                     </Box>

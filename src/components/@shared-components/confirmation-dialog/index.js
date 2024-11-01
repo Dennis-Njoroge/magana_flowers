@@ -8,7 +8,7 @@ import DMTTextInput from "@/components/@shared-components/forms/text-input";
 
 
 const ConfirmationDialog = props => {
-    const { open, isPurchase= false, onClose, onProceed, message= 'Are you sure you want to clear cart?', showForm } = props;
+    const { open, isPurchase= false, onClose, onProceed, message= 'Are you sure you want to clear cart?', showForm, showQty = false, originalQty } = props;
     const [isSuccess, setIsSuccess] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [driverId, setDriverId] = useState(null);
@@ -19,6 +19,9 @@ const ConfirmationDialog = props => {
         if (hasError){
             return;
         }
+
+
+
         setIsLoading(true)
         const res = await onProceed(driverId);
         if (res){
@@ -32,6 +35,9 @@ const ConfirmationDialog = props => {
     useEffect(() => {
         if(open){
             setIsSuccess(null);
+            if (showQty){
+                setDriverId(originalQty)
+            }
         }
     },[open])
 
@@ -78,6 +84,21 @@ const ConfirmationDialog = props => {
                                     />
                                 )}
 
+                            </>
+                        )}
+                        {showQty && (
+                            <>
+                                <DMTTextInput
+                                    id={'qty'}
+                                    label={'Available Qty'}
+                                    value={driverId}
+                                    required={true}
+                                    onChange={e => setDriverId(e.target.value)}
+                                    name={'driverId'}
+                                    error={Boolean(hasError)}
+                                    helperText={`Please enter the available qty, required qty is ${originalQty}`}
+                                    placeholder={'Enter the available qty'}
+                                />
                             </>
                         )}
                         <Box sx={{ mt:2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap:2 }}>

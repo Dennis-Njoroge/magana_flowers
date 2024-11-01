@@ -38,12 +38,25 @@ const PurchaseActionButton = ({ status, label,purchase, onClose, ...others }) =>
                 id: purchase.id
             }
             if (transactionCode){
-                values = {
-                    ...values,
-                    payment_code: transactionCode
+                if (status === PURCHASE_STATUS.APPROVED){
+                    const qty = transactionCode;
+                    if (qty > purchase.original_qty){
+                        toast.error(`Available quantity (${qty}) exceeds the required quantity (${purchase.original_qty})`);
+                        return;
+                    }
+                    values = {
+                        ...values,
+                        available_qty: qty
+                    }
                 }
-            }
+                else{
+                    values = {
+                        ...values,
+                        payment_code: transactionCode
+                    }
+                }
 
+            }
             const res = await purchasesApis.updatePurchasesStatus(values);
             if (res?.success){
                 onClose?.();
@@ -68,6 +81,8 @@ const PurchaseActionButton = ({ status, label,purchase, onClose, ...others }) =>
                 onProceed={handleOnProceed}
                 isPurchase={true}
                 showForm={status === PURCHASE_STATUS.COMPLETED}
+                showQty={status === PURCHASE_STATUS.APPROVED}
+                originalQty={purchase.original_qty}
             />
         </>
     )

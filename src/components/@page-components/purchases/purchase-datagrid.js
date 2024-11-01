@@ -1,5 +1,5 @@
 import DMTDataGrid from "@/components/@shared-components/data-grid";
-import {formatCurrency, formatDate, orderStatusColor, purchaseStatusColor} from "@/utils/helper-functions";
+import {formatCurrency, formatDate, purchaseStatusColor} from "@/utils/helper-functions";
 import DMTChip from "@/components/@shared-components/chip";
 
 const PurchaseDatagrid = ({ data }) => {
@@ -26,6 +26,20 @@ const PurchaseDatagrid = ({ data }) => {
             label: 'Product Name',
             value: data => {
                 return formatCurrency(data?.Product?.prod_name);
+            }
+        },
+        {
+            attribute: 'original_qty',
+            label: 'Quantity',
+            value: data => {
+                return formatCurrency(data.original_qty);
+            }
+        },
+        {
+            attribute: 'price_per_unit',
+            label: 'Buying Price',
+            value: data => {
+                return formatCurrency(data.price_per_unit);
             }
         },
         {
